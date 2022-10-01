@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+.black-content{
+  background-color: #1E1E1E;
+  color: white;
+}
+.white-content{
+  background-color: white;
+  color: black;
+}
