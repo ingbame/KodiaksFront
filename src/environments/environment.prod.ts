@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  kodiaksApi: "https://kodiaks-softteam.somee.com/api"
 };
