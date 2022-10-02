@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade modalKodiaks" id="detailModal" tabindex="-1" aria-labelledby="detailModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="detailModalLabel">Detalle del movimiento</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="form-label"><b>Integrante</b></label>
+            <p>{{movement.fullName}}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label"><b>Tipo</b></label>
+            <p>{{movement.movementTypeDesc}}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label"><b>Concepto</b></label>
+            <p>{{movement.conceptDesc}}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label"><b>Método</b></label>
+            <p>{{movement.methodDesc}}</p>
+          </div>
+          <div class="col-5">
+            <label class="form-label"><b>Fecha de movimiento</b></label>
+            <p>{{movement.movementDate | date:'dd/MM/yyyy'}}</p>
+          </div>
+          <div class="col-md-7">
+            <label class="form-label"><b>Monto</b></label>
+            <p [ngClass]="movement.movementTypeId == 2 ? 'negative-currency' : ''">
+                <b>{{(movement.movementTypeId == 2 ? "-" + movement.amount : movement.amount) | currency}}</b>
+            </p>
+          </div>
+          <div class="col-md-12">
+            <label class="form-label"><b>Comentario</b></label>
+            <p>{{movement.additionalComment == null || movement.additionalComment == "" ? "N/A" : movement.additionalComment}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

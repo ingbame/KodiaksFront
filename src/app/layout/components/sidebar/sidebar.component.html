@@ -1,1 +1,24 @@
-<p>sidebar works!</p>
+<div class="logo">
+  <a class="simple-text logo-mini">
+    <div class="logo-img">
+      <img src="./assets/img/KS_NR.png" />
+    </div>
+  </a>
+  <a class="simple-text logo-normal">
+    <span>KODIAKS</span>
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      class="{{ menuItem.class }} nav-item"
+    >
+      <a [routerLink]="[menuItem.path]">
+        <i class="{{ menuItem.icon }}"></i>
+        <p>{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div>

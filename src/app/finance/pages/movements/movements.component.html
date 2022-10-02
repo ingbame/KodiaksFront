@@ -1,0 +1,54 @@
+<app-new-modal [movement]="movement" [saveEvent]="updateDataEvent"></app-new-modal>
+<app-detail-modal [movement]="movementEdit"></app-detail-modal>
+
+<div class=" row">
+  <div class=" col-md-12">
+    <div class=" card">
+      <div class=" card-header">
+        <div class="row">
+          <div class="col col-mb-11">
+            <h1 class=" card-title">
+              Saldo (Fondo): <span [ngClass]="total == 0 ? 'neutral-currency' : total > 0 ? 'positive-currency': 'negative-currency'">{{total | currency}}</span>
+            </h1>
+          </div>
+          <div class="col col-mb-1 text-right">
+            <input class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#movementModal" type="button"
+              value="Agregar movimiento" (click)="OpenAddMovementModel()">
+          </div>
+        </div>
+      </div>
+      <div class=" card-body">
+        <div class=" table-responsive">
+          <table class=" table tablesorter" id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>Fecha</th>
+                <th>Tipo </th>
+                <th>Concepto</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let movementItem of movements">
+                <td class=" text-center">
+                  <a href="#" class="link-Kodiaks" data-bs-toggle="modal" data-bs-target="#detailModal" (click)="onOpenDetailMovement(movementItem)">
+                    <span ngbTooltip="{{movementItem.fullName}}">
+                      {{movementItem.movementDate | date:'dd/MM/yyyy'}}
+                    </span>
+                  </a>
+                </td>
+                <td><span ngbTooltip="{{movementItem.movementTypeDesc}}">{{movementItem.movementTypeKey}}</span></td>
+                <td>{{movementItem.conceptDesc}}</td>
+                <td class="text-rigth">
+                  <span [ngClass]="movementItem.movementTypeId == 1 ? 'positive-currency': 'negative-currency'">
+                    {{(movementItem.movementTypeId == 2 ? "-" + movementItem.amount : movementItem.amount) | currency}}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

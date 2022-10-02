@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  selector: "app-admin-layout",
+  templateUrl: "./layout.component.html",
+  styleUrls: ["./layout.component.scss"]
 })
 export class LayoutComponent implements OnInit {
+  public sidebarColor: string = "red";
 
-  constructor() { }
+  constructor() {}
+  changeSidebarColor(color:string){
+    var sidebar = document.getElementsByClassName('sidebar')[0];
+    var mainPanel = document.getElementsByClassName('main-panel')[0];
 
-  ngOnInit(): void {
+    this.sidebarColor = color;
+
+    if(sidebar != undefined){
+        sidebar.setAttribute('data',color);
+    }
+    if(mainPanel != undefined){
+        mainPanel.setAttribute('data',color);
+    }
   }
   changeDashboardColor(color:string){
     var body = document.getElementsByTagName('body')[0];
@@ -20,4 +31,5 @@ export class LayoutComponent implements OnInit {
       body.classList.remove('white-content');
     }
   }
+  ngOnInit() {}
 }

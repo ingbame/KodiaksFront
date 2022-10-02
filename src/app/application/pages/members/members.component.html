@@ -1,0 +1,54 @@
+<app-member-modal [actionStr]="actionStr" [MemberModel]="MemberModel" [idToEdit]="idToEdit" [saveEvent]="updateDataEvent"></app-member-modal>
+
+<div class=" row">
+  <div class=" col-md-12">
+    <div class=" card">
+      <div class=" card-header">
+        <div class="row">
+          <div class="col col-mb-10">
+            <h1 class=" card-title">Miembros del equipo</h1>
+          </div>
+          <div class="col col-mb-2 text-right">
+            <input class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
+              value="Agregar" (click)="OpenAddMemberModel()">
+          </div>
+        </div>
+      </div>
+      <div class=" card-body">
+        <div class=" table-responsive">
+          <table class=" table tablesorter" id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>Id</th>
+                <th>Nombre </th>
+                <th>Apodo</th>
+                <th>N°</th>
+                <th>B/T</th>
+                <th>Cumpleaños</th>
+                <th>Correo</th>
+                <th>Celular</th>
+                <th class=" text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let member of lstMembers">
+                <td>{{member.memberId}}</td>
+                <td>{{member.fullName}}</td>
+                <td>{{member.nickName}}</td>
+                <td>{{member.shirtNumber}}</td>
+                <td>{{member.btSideDesc}}</td>
+                <td>{{member.birthday | date:'dd/MM/yyyy'}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.cellPhoneNumber}}</td>
+                <td class=" text-center">
+                  <input class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
+                    value="Editar" (click)="onEditMember(member)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

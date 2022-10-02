@@ -1,0 +1,64 @@
+<!-- Modal -->
+<div class="modal fade modalKodiaks" id="movementModal" tabindex="-1" aria-labelledby="movementModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="movementModalLabel">Nuevo movimiento</h1>
+        <button id="movementModalClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmitMovementModal()" #form="ngForm" class="row g-3">
+          <div class="col-md-12">
+            <label for="ddlMemberFullName" class="form-label">Integrante</label>
+            <select #ddlMember name="ddlMemberFullName" class="form-select" [(ngModel)]="movement.fullName"
+              (change)="onDdlMemberChange($event)">
+              <option selected [attr.data-id]="0">Seleccione</option>
+              <option *ngFor="let item of members" [attr.data-id]="item.memberId">{{item.fullName}}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="ddlMovementType" class="form-label">Tipo</label>
+            <select #ddlMovementType name="ddlMovementType" class="form-select" [(ngModel)]="movement.movementTypeDesc"
+              (change)="onDdlMovementTypeChange($event)">
+              <option selected [attr.data-id]="0">Seleccione</option>
+              <option *ngFor="let item of movementTypes" [attr.data-id]="item.movementTypeId">{{item.movementTypeDesc}}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="ddlConcept" class="form-label">Concepto</label>
+            <select #ddlConcept name="ddlConcept" class="form-select" [(ngModel)]="movement.conceptDesc"
+              (change)="onDdlConceptChange($event)">
+              <option selected [attr.data-id]="0">Seleccione</option>
+              <option *ngFor="let item of concepts" [attr.data-id]="item.conceptId">{{item.conceptDesc}}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="ddlMethod" class="form-label">Método</label>
+            <select #ddlMethod name="ddlMethod" class="form-select" [(ngModel)]="movement.methodDesc"
+              (change)="onDdlMethodChange($event)">
+              <option selected [attr.data-id]="0">Seleccione</option>
+              <option *ngFor="let item of methods" [attr.data-id]="item.methodId">{{item.methodDesc}}</option>
+            </select>
+          </div>
+          <div class="col-5">
+            <label for="txtMovementDate" class="form-label">Fecha de movimiento</label>
+            <input type="date" class="form-control" id="txtMovementDate" name="txtMovementDate"
+              [ngModel]="movement.movementDate | date:'yyyy-MM-dd'" #myBirthday
+              [value]="movement.movementDate | date:'yyyy-MM-dd'" (change)="onMovementDateChange($event)">
+          </div>
+          <div class="col-md-7">
+            <label for="txtAmount" class="form-label">Monto</label>
+            <input type="number" class="form-control" name="txtAmount" [(ngModel)]="movement.amount">
+          </div>
+          <div class="col-md-12">
+            <label for="txtAditionalComment" class="form-label">Comentario</label>
+            <input type="text" class="form-control" name="txtAditionalComment" [(ngModel)]="movement.additionalComment">
+          </div>
+          <div class="col-12 text-right">
+            <button type="submit" class="btn btn-primary">Guardar movimiento</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
