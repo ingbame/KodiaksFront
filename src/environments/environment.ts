@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  kodiaksApi: "https://kodiaksdev.somee.com/api"
-  //kodiaksApi: "https://localhost:7226/api"
+  kodiaksApi: "https://localhost:7226/api"
 };
 
 /*

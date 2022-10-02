@@ -1,12 +1,113 @@
-.KodiaksTitle{
-  padding-bottom: 0;
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.left-form {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  float: left;
+}
+
+.right-form {
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  float: left;
+  background-color: #760f0f;
+  display: flex;
+  justify-content: center;
+}
+.right-form form{
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.right-form h2{
+  font-size: 2em;
+  margin: 20px 0;
+  font-weight: bold;
+}
+.right-form form > input{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1.2em;
+}
+.right-form form > input:focus{
+  box-shadow: 0 0 0 3px #0FFAAF;
+}
+.right-form form > label{
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+.check{
+  width: 100%;
+  margin: 20px 0;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1.1em auto;
+  gap: 0.5em;
+  span{
+    font-size: 1.1rem;
+    margin-top: 0.2em;
+    margin-left: 3px;
+  }
 }
 .Kodiaks-logo {
   width: 100%;
   text-align: center;
 
   img {
-    width: 300px;
+    width: 50%;
     height: auto;
+  }
+}
+.forgetPassword{
+color: #980FFA;
+}
+.forgetPassword:hover{
+color: #980FFA;
+}
+.right-form input[type="password"]:not(:placeholder-shown){
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.1ch;
+  font-size: 1.2em;
+}
+.right-form input[type="submit"]{
+  width: 100%;
+  background-color: #1963E3;
+  border: none;
+  font-size: 18px;
+  padding: 8px 30px;
+  box-shadow: 0;
+}
+.right-form input[type="submit"]:focus{
+  box-shadow: none !important;
+}
+.right-form input[type="submit"]:active{
+  background-color: #0FA3FA;
+}
+
+@media only screen and (max-width: 768px) {
+  .left-form{
+    display: none;
+  }
+  .right-form{
+    width: 100%;
+    background-color: transparent;
+  }
+  .right-form form{
+    width: 95%;
+    padding: 0 1em;
   }
 }

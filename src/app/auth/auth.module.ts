@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRoutes } from './routes/auth.routing';
+import { NgParticlesModule } from 'ng-particles';
 
 
 
@@ -14,6 +15,7 @@ import { AuthRoutes } from './routes/auth.routing';
   imports: [
     CommonModule,
     FormsModule,
+    NgParticlesModule,
     RouterModule.forChild(AuthRoutes)
   ]
 })

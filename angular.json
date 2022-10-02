@@ -61,6 +61,20 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "develop-server": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -73,6 +87,9 @@
             },
             "development": {
               "browserTarget": "KodiaksWeb:build:development"
+            },
+            "develop-server": {
+              "browserTarget": "KodiaksWeb:build:develop-server"
             }
           },
           "defaultConfiguration": "development"
