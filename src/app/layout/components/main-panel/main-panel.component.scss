@@ -17,3 +17,13 @@
   width: calc(100% - 5rem);
   margin-left: 5rem;
 }
+.main-panel-full-screen{
+  width: 100%;
+  margin-left: 0;
+}
+@media only screen and (max-width: 450px) {
+  .main-panel{
+    width: 100%;
+    margin-left: 0;
+  }
+}
