@@ -21,7 +21,9 @@ export class LayoutComponent implements OnInit {
       body.classList.remove('white-content');
     }
   }
-  ngOnInit() { }
+  ngOnInit() {
+    this.screenWidth = window.innerWidth;
+  }
   onToggleSideNav(data: SideNavToggle): void {
     this.screenWidth = data.screenWidth;
     this.isSideNavCollapsed = data.collapsed;

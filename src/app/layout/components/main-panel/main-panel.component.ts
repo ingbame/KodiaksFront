@@ -19,9 +19,7 @@ export class MainPanelComponent implements OnInit {
     if (this.collapsed && this.screenWidth > 768)
       styleClass = "main-panel-trimmed";
     else if (this.collapsed && this.screenWidth <= 768 && this.screenWidth > 0)
-    styleClass = "main-panel-md-screen";
-    else if (this.collapsed && this.screenWidth <= 450 && this.screenWidth > 0)
-      styleClass = "main-panel-full-screen";
+      styleClass = "main-panel-md-screen";
     return styleClass;
   }
 }

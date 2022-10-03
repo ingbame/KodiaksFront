@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
 import { ROUTES } from "../../models/items-menu";
 import { LayoutService } from "../../services/layout.service";
 
@@ -16,7 +16,7 @@ import { SideNavToggle } from "../../interfaces/sidenav-toggle.interface";
 export class SidebarComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed: boolean = false;
-  screenWidth: number = 0;
+  @Input() screenWidth: number = 0;
   urlRedirect?: string;
   menuItems: any[] = [];
 
@@ -63,11 +63,5 @@ export class SidebarComponent implements OnInit {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
-  }
-  isMobileMenu() {
-    if (window.innerWidth > 991) {
-      return false;
-    }
-    return true;
   }
 }
