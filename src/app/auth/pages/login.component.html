@@ -13,17 +13,31 @@
 
     <label for="txtuserName" class="form-label">Usuario</label>
     <input type="text" class="form-control" id="txtuserName" name="userName" [(ngModel)]="logUsr.userName"
-      placeholder="Ingrese su usuario." (ngModelChange)="Validate($event, 'userName', 'phone')" required>
+      placeholder="Ingrese su usuario." #userName="ngModel" required>
+    <div *ngIf="userName.invalid && (userName.dirty || userName.touched) "
+      class="login-validations text-danger text-end">
+      <div *ngIf="userName.errors?.['required']">
+        <span><i class="fa-solid fa-circle-exclamation"></i> Usuario es obligatorio</span>
+      </div>
+    </div>
 
     <label for="txtPassword" class="form-label">Contraseña</label>
-
     <input type="password" class="form-control" id="txtPassword" name="password" [(ngModel)]="logUsr.password"
-      placeholder="Ingrese su contraseña." (ngModelChange)="Validate($event,'password')" required>
+      placeholder="Ingrese su contraseña." #password="ngModel" required>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)"
+      class="login-validations text-danger text-end">
+      <div *ngIf="password.errors?.['required']">
+        <span><i class="fa-solid fa-circle-exclamation"></i> Contraseña es obligatoria</span>
+      </div>
+    </div>
 
     <a href="#" class="forgetPassword"> ¿Olvidaste tu contraseña? </a>
-
     <div class="check">
-      <input type="checkbox" id="gridCheck">
+      <input type="checkbox" id="cbxShowPassword" (change)="showPassword($event)">
+      <span>Mostrar contraseña</span>
+    </div>
+    <div class="check">
+      <input type="checkbox" id="cbxRemmemberPassword">
       <span>Recordar contraseña</span>
     </div>
 

@@ -18,11 +18,13 @@
   height: 100%;
   margin: 0;
   float: left;
-  background-color: #760f0f;
+  background-color: white;
+  color: black;
   display: flex;
   justify-content: center;
 }
-.right-form form{
+
+.right-form form {
   width: 55%;
   height: 100%;
   display: flex;
@@ -30,26 +32,31 @@
   justify-content: center;
   align-items: center;
 }
-.right-form h2{
+
+.right-form h2 {
   font-size: 2em;
   margin: 20px 0;
   font-weight: bold;
 }
-.right-form form > input{
+
+.right-form form>input {
   width: 100%;
   padding: 10px 0;
   font-size: 1.2em;
 }
-.right-form form > input:focus{
+
+.right-form form>input:focus {
   box-shadow: 0 0 0 3px #0FFAAF;
 }
-.right-form form > label{
+
+.right-form form>label {
   width: 100%;
   font-size: 18px;
   font-weight: 700;
   margin: 20px 0;
 }
-.check{
+
+.check {
   width: 100%;
   margin: 20px 0;
   font-size: 1.05rem;
@@ -57,12 +64,14 @@
   display: grid;
   grid-template-columns: 1.1em auto;
   gap: 0.5em;
-  span{
+
+  span {
     font-size: 1.1rem;
     margin-top: 0.2em;
     margin-left: 3px;
   }
 }
+
 .Kodiaks-logo {
   width: 100%;
   text-align: center;
@@ -72,18 +81,22 @@
     height: auto;
   }
 }
-.forgetPassword{
-color: #980FFA;
+
+.forgetPassword {
+  color: #980FFA;
 }
-.forgetPassword:hover{
-color: #980FFA;
+
+.forgetPassword:hover {
+  color: #980FFA;
 }
-.right-form input[type="password"]:not(:placeholder-shown){
+
+.right-form input[type="password"]:not(:placeholder-shown) {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 0.1ch;
   font-size: 1.2em;
 }
-.right-form input[type="submit"]{
+
+.right-form input[type="submit"] {
   width: 100%;
   background-color: #1963E3;
   border: none;
@@ -91,23 +104,40 @@ color: #980FFA;
   padding: 8px 30px;
   box-shadow: 0;
 }
-.right-form input[type="submit"]:focus{
+
+.right-form input[type="submit"]:focus {
   box-shadow: none !important;
 }
-.right-form input[type="submit"]:active{
+
+.login-validations {
+  width: 100%;
+}
+
+.right-form input[type="submit"]:active {
   background-color: #0FA3FA;
 }
 
 @media only screen and (max-width: 768px) {
-  .left-form{
+  .left-form {
     display: none;
   }
-  .right-form{
+
+  .right-form {
     width: 100%;
+    color: white;
     background-color: transparent;
   }
-  .right-form form{
+
+  .right-form form {
     width: 95%;
     padding: 0 1em;
+  }
+
+  .forgetPassword {
+    color: #028CE3;
+  }
+
+  .forgetPassword:hover {
+    color: #028CE3;
   }
 }

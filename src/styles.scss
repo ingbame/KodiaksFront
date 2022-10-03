@@ -8,10 +8,12 @@ body{
   font-family: sans-serif;
 }
 .black-content{
+  transition: background 5s linear;
   background-color: #1E1E1E;
   color: white;
 }
 .white-content{
+  transition: background 5s linear;
   background-color: white;
   color: black;
 }

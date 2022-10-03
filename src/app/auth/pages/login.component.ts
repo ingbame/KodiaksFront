@@ -114,10 +114,18 @@ export class LoginComponent implements OnInit {
     // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(engine);
   }
+  showPassword(e:any): void {
+    const txtPasswordElement: any = document.getElementById("txtPassword");
+    if (e.currentTarget.checked) {
+      txtPasswordElement.type = "text";
+    } else {
+      txtPasswordElement.type = "password";
+    }
+  }
   OnSubmit(): void {
-    if (!this.Validate(this.logUsr?.userName ?? "", "userName", "phone"))
+    if ((this.logUsr?.userName?.trim() ?? "") == "")
       return;
-    if (!this.Validate(this.logUsr?.password ?? "", "password"))
+    if ((this.logUsr?.password?.trim() ?? "") == "")
       return;
 
     this.authService.login(this.logUsr.userName, this.logUsr.password)

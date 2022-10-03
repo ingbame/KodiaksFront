@@ -9,6 +9,7 @@ import { LayoutRoutes } from './routes/layout.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MainPanelComponent } from './components/main-panel/main-panel.component';
 
 
 
@@ -18,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SidebarComponent,
     FooterComponent,
     LayoutComponent,
+    MainPanelComponent,
   ],
   imports: [
     CommonModule,

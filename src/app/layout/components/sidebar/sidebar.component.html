@@ -1,4 +1,21 @@
-<div class="logo">
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+  <div class="logo-containter">
+    <button class="logo" (click)="toggleCollapse()">A</button>
+    <div class="logo-text" *ngIf="collapsed">Kodiaks</div>
+    <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <ul class="sidenav-nav">
+    <li *ngFor="let menuItem of menuItems" class="sidenav-nav-item">
+      <a [routerLink]="[menuItem.path]" class="sidenav-nav-link" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
+        <i class="{{ menuItem.icon }} sidenav-link-icon"></i>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{ menuItem.title }}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- <div class="logo">
   <a class="simple-text logo-mini">
     <div class="logo-img">
       <img src="./assets/img/KS_NR.png" />
@@ -21,4 +38,4 @@
       </a>
     </li>
   </ul>
-</div>
+</div> -->

@@ -11,42 +11,32 @@ export class NotificationUtility {
   show(type: NotificationEnum, title: string, message: any) {
     switch (type) {
       case NotificationEnum.info:
-        this.toastr.info('<i class="tim-icons icon-bell-55" [data-notify]="icon"></i>'+ message, title, {
+        this.toastr.info(message, title, {
           closeButton: true,
-          enableHtml: true,
-          toastClass: "alert alert-info alert-with-icon",
           positionClass: 'toast-bottom-right'
         });
         break;
       case NotificationEnum.success:
-        this.toastr.success('<i class="tim-icons icon-bell-55" [data-notify]="icon"></i>'+ message, title, {
+        this.toastr.success(message, title, {
           closeButton: true,
-          enableHtml: true,
-          toastClass: "alert alert-success alert-with-icon",
           positionClass: 'toast-bottom-right'
         });
         break;
       case NotificationEnum.warning:
-        this.toastr.warning('<i class="tim-icons icon-bell-55" [data-notify]="icon"></i>'+ message, title, {
+        this.toastr.warning(message, title, {
           closeButton: true,
-          enableHtml: true,
-          toastClass: "alert alert-warning alert-with-icon",
           positionClass: 'toast-bottom-right'
         });
         break;
       case NotificationEnum.error:
-        this.toastr.error('<i class="tim-icons icon-bell-55" [data-notify]="icon"></i>'+ message, title, {
+        this.toastr.error( message, title, {
           closeButton: true,
-          enableHtml: true,
-          toastClass: "alert alert-danger alert-with-icon",
           positionClass: 'toast-bottom-right'
         });
         break;
       case NotificationEnum.show:
-        this.toastr.show('<i class="tim-icons icon-bell-55" [data-notify]="icon"></i>'+ message, title, {
+        this.toastr.show(message, title, {
           closeButton: true,
-          enableHtml: true,
-          toastClass: "alert alert-primary alert-with-icon",
           positionClass: 'toast-bottom-right'
         });
         break;
