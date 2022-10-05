@@ -23,10 +23,10 @@ export class SidebarComponent implements OnInit {
   @HostListener("window:resize", ["$event"])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
-    if(this.screenWidth <= 768){
+    if (this.screenWidth <= 768) {
       this.collapsed = false;
       this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
-    }else{
+    } else {
       this.collapsed = true;
       this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
 
@@ -40,21 +40,23 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.screenWidth = window.innerWidth;
-    this.layoutService.GetMenu().subscribe({
-      next: (res) => {
-        res.forEach((item: any) => {
-          let itemVal: any = ROUTES.filter(menuItem => menuItem.itemKey == item.itemKey)[0];
-          if (itemVal != undefined) {
-            itemVal.icon = item.iconSource;
-            this.menuItems.push(itemVal)
-          }
-        });
-      },
-      error: (err) => {
-        this.notification.show(NotificationEnum.error, "Error", err.error);
-      },
-      complete: () => { }
-    });
+    if (this.menuItems.length <= 0) {
+      this.layoutService.GetMenu().subscribe({
+        next: (res) => {
+          res.forEach((item: any) => {
+            let itemVal: any = ROUTES.filter(menuItem => menuItem.itemKey == item.itemKey)[0];
+            if (itemVal != undefined) {
+              itemVal.icon = item.iconSource;
+              this.menuItems.push(itemVal)
+            }
+          });
+        },
+        error: (err) => {
+          this.notification.show(NotificationEnum.error, "Error", err.error);
+        },
+        complete: () => { }
+      });
+    }
   }
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;

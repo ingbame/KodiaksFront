@@ -7,12 +7,10 @@
     <!-- <marquee behavior="scroll" direction="left">Prueba de futuras noticias sdfsfsfdsdffffffffffsdggergegegegfgdfgseefbertsdgdfgseregdvdfdgergg</marquee> -->
     <button aria-label="Toggle navigation" class=" navbar-toggler" (click)="collapse()"
       [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" id="navigation" type="button">
-      <span class=" navbar-toggler-bar navbar-kebab"> </span>
-      <span class=" navbar-toggler-bar navbar-kebab"> </span>
-      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <i class="fa-solid fa-ellipsis-vertical"></i>
     </button>
     <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
-      <ul class=" navbar-nav ml-auto">
+      <ul class=" navbar-nav me-auto mb-2 mb-lg-0">
         <li class=" nav-item" ngbDropdown>
           <a class=" nav-link" data-toggle="dropdown" href="javascript:void(0)" ngbDropdownToggle>
             <div class=" notification d-none d-lg-block d-xl-block"></div>

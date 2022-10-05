@@ -4,32 +4,21 @@
   </div>
   <app-main-panel [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-main-panel>
 </div>
-<!-- <div class="wrapper">
-  <div class="sidebar">
-    <app-sidebar></app-sidebar>
-  </div>
-  <div class="main-panel">
-    <app-navbar></app-navbar>
-    <div class=" content">
-      <router-outlet></router-outlet>
-    </div>
-    <app-footer></app-footer>
-  </div>
-</div>
-<div class=" fixed-plugin">
+
+<div class="fixed-plugin">
   <div class=" show-dropdown" ngbDropdown>
     <a data-toggle="dropdown" ngbDropdownToggle>
-      <i class=" fa fa-cog fa-2x"> </i>
+      <i class=" fa fa-cog fa-2x"></i>
     </a>
-    <ul ngbDropdownMenu>
-      <li class=" header-title">Sidebar Background</li>
-
-      <li class=" adjustments-line text-center color-change">
+    <ul class="ul-color-mode" ngbDropdownMenu>
+      <li class="fs-5">Sidebar Background</li>
+      <hr class="hr hr-blurry" />
+      <li class=" mode-option-text text-center ">
         <span class=" color-label"> LIGHT MODE </span>
-        <span class=" badge light-badge mr-2" (click)="changeDashboardColor('white-content')"> </span>
-        <span class=" badge dark-badge ml-2" (click)="changeDashboardColor('black-content')"> </span>
+        <span class=" top-0 start-100 translate-small p-1 bg-light border border-dark rounded-circle text-light" (click)="changeDashboardColor('white-content')">D</span>
+        <span class=" top-0 start-100 translate-small p-1 bg-dark border border-light rounded-circle text-dark" (click)="changeDashboardColor('black-content')">D</span>
         <span class=" color-label"> DARK MODE </span>
       </li>
     </ul>
   </div>
-</div> -->
+</div>

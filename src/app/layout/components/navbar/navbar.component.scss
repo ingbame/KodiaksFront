@@ -1,25 +1,28 @@
 $default: #760f0f !default;
 $black: #000000 !default;
 $white: #FFFFFF !default;
-.navbar{
+
+.navbar {
   width: 100%;
-  background-color: $default !important;
+  background-color: $default  !important;
+
   * {
-    background-color: $default !important;
+    background-color: $default  !important;
     color: $white;
   }
-  .btnSidebarToggle{
+
+  .btnSidebarToggle {
     width: 20px;
-    border-width: 1px !important;
-    border-color: yellow !important;
-    border-style: dashed solid !important;
   }
-  .collapse{
-    width: 50px !important;
+
+  .collapse {
+    right: 0 !important;
+    width: 100px !important;
     border-width: 1px !important;
     border-color: green !important;
     border-style: dashed solid !important;
   }
+
   .photo {
     display: inline-block;
     height: 30px;
@@ -27,14 +30,17 @@ $white: #FFFFFF !default;
     border-radius: 50%;
     vertical-align: middle;
     overflow: hidden;
-      img{
-        width: 100%;
-      }
+
+    img {
+      width: 100%;
+    }
   }
-  .navbar-toggler > *{
-    color: $white !important;
+
+  .navbar-toggler {
+    border: none;
   }
 }
+
 @media screen and (max-width: 991px) {
   .navbar {
     .container-fluid {
@@ -269,6 +275,7 @@ $white: #FFFFFF !default;
   }
 
 }
+
 @media screen and (min-width: 992px) {
   .navbar-collapse {
     background: none !important;

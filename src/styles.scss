@@ -16,7 +16,7 @@ body{
   font-family: sans-serif;
 }
 .black-content{
-  transition: background 5s linear;
+  transition: background 1s linear;
   background-color: $color-bg-dark-mode;
   color: $white;
   .card{
@@ -29,9 +29,13 @@ body{
     color: $black;
     font-weight: bold;
   }
+  .ul-color-mode{
+    background-color: $black;
+    color: $white;
+  }
 }
 .white-content{
-  transition: background 5s linear;
+  transition: background 1s linear;
   background-color: $color-bg-light-mode;
   color: black;
 }
