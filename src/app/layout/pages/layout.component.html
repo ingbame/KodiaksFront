@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="sidebar">
-    <app-sidebar [screenWidth]="screenWidth" (onToggleSideNav)="onToggleSideNav($event)"></app-sidebar>
+    <app-sidebar (onToggleSideNav)="onToggleSideNav($event)"></app-sidebar>
   </div>
   <app-main-panel [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-main-panel>
 </div>

@@ -1,10 +1,12 @@
 <!-- Modal -->
-<div class="modal fade modalKodiaks" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+<div class="modal fade modalKodiaks" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="memberModalLabel">{{actionStr}} miembro</h1>
-        <button id="memberModalClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title" id="memberModalLabel">{{actionStr === undefined ? 'Información' : actionStr}} miembro</h1>
+        <button id="memberModalClose" type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form (ngSubmit)="onSubmitMemberModal()" #form="ngForm" class="row g-3">
@@ -39,7 +41,7 @@
           </div>
           <div class="col-4">
             <label for="txtBirthday" class="form-label">Cumpleaños</label>
-            <input type="date" class="form-control" id="txtBirthday" name="txtBirthday"
+            <input type="date" class="form-control w-100" id="txtBirthday" name="txtBirthday"
               [ngModel]="MemberModel.birthday | date:'yyyy-MM-dd'" #myBirthday
               [value]="MemberModel.birthday | date:'yyyy-MM-dd'" (change)="onMyBirthdayChange($event)">
           </div>
@@ -94,8 +96,11 @@
               </div>
             </div>
           </div>
-          <div class="col-12 text-right">
-            <button type="submit" class="btn btn-primary">{{actionStr}}</button>
+          <div class="col-12 text-end">
+            <button type="button" class="btn  w-50 p-3 btn-danger" [style]="actionStr === undefined ? 'display: none;' : ''" (click)="onClickCancel()">Cancelar</button>
+            <button type="submit" class="btn  p-3" [ngClass]="actionStr === undefined ? 'w-100 btn-warning' : 'w-50 btn-success'">
+              {{actionStr === undefined ? 'Editar' : 'Guardar'}}
+            </button>
           </div>
         </form>
       </div>

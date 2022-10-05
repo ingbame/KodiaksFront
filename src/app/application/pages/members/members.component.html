@@ -5,44 +5,34 @@
     <div class=" card">
       <div class=" card-header">
         <div class="row">
-          <div class="col col-mb-10">
+          <div class="col col-lg-10">
             <h1 class=" card-title">Miembros del equipo</h1>
           </div>
-          <div class="col col-mb-2 text-right">
-            <input class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
+          <div class="col col-md-2 text-end">
+            <input class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
               value="Agregar" (click)="OpenAddMemberModel()">
           </div>
         </div>
       </div>
       <div class=" card-body">
         <div class=" table-responsive">
-          <table class=" table tablesorter" id="">
-            <thead class=" text-primary">
+          <table class="table" id="">
+            <thead>
               <tr>
-                <th>Id</th>
                 <th>Nombre </th>
                 <th>Apodo</th>
                 <th>N°</th>
-                <th>B/T</th>
-                <th>Cumpleaños</th>
-                <th>Correo</th>
-                <th>Celular</th>
-                <th class=" text-center">Actions</th>
+                <th class=" text-center"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
               <tr *ngFor="let member of lstMembers">
-                <td>{{member.memberId}}</td>
                 <td>{{member.fullName}}</td>
                 <td>{{member.nickName}}</td>
                 <td>{{member.shirtNumber}}</td>
-                <td>{{member.btSideDesc}}</td>
-                <td>{{member.birthday | date:'dd/MM/yyyy'}}</td>
-                <td>{{member.email}}</td>
-                <td>{{member.cellPhoneNumber}}</td>
                 <td class=" text-center">
-                  <input class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
-                    value="Editar" (click)="onEditMember(member)">
+                  <input class="btn btn-info w-100 h-100" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
+                  value="Detalle" (click)="onEditMember(member)">
                 </td>
               </tr>
             </tbody>

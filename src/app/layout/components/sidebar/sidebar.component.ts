@@ -16,7 +16,7 @@ import { SideNavToggle } from "../../interfaces/sidenav-toggle.interface";
 export class SidebarComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed: boolean = false;
-  @Input() screenWidth: number = 0;
+  screenWidth: number = 0;
   urlRedirect?: string;
   menuItems: any[] = [];
 

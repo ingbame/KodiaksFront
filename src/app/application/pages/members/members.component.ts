@@ -44,7 +44,6 @@ export class MembersComponent implements OnInit {
     this.MemberModel = new MemberEntity();
   }
   onEditMember(member: MemberEntity): void {
-    this.actionStr = MemberActionEnum.edit;
     this.idToEdit = member.memberId;
     this.MemberModel = JSON.parse(JSON.stringify(member));
   }

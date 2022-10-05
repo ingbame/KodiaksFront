@@ -22,7 +22,6 @@ export class LayoutComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.screenWidth = window.innerWidth;
   }
   onToggleSideNav(data: SideNavToggle): void {
     this.screenWidth = data.screenWidth;

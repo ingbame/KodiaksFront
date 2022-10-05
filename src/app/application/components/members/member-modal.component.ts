@@ -41,6 +41,11 @@ export class MemberModalComponent implements OnInit {
     this.GetBattingThrowingSides();
   }
   onSubmitMemberModal(): void {
+    if (this.actionStr === undefined){
+      this.actionStr = MemberActionEnum.edit;
+      return;
+    }
+
     let model: any = {};
     switch (this.actionStr) {
       case MemberActionEnum.add:
@@ -51,6 +56,7 @@ export class MemberModalComponent implements OnInit {
             next: (res) => {
               this.notification.show(NotificationEnum.success, "Acción", "Guardado correctamente.");
               this.MemberModel = new MemberEntity();
+              this.actionStr = undefined;
             },
             error: (err) => {
               this.notification.show(NotificationEnum.error, "Error", err.error);
@@ -70,6 +76,7 @@ export class MemberModalComponent implements OnInit {
             next: (res) => {
               this.notification.show(NotificationEnum.success, "Acción", "Editado correctamente");
               this.MemberModel = new MemberEntity();
+              this.actionStr = undefined;
             },
             error: (err) => {
               this.notification.show(NotificationEnum.error, "Error", err.error);
@@ -82,10 +89,10 @@ export class MemberModalComponent implements OnInit {
           });
         }
         break;
-
-      default:
-        break;
     }
+  }
+  onClickCancel(): void {
+    this.actionStr = undefined;
   }
   onDdlRoleChange(event: any) {
     this.MemberModel.roleId = event.target.selectedOptions[0].dataset.id;
@@ -94,8 +101,8 @@ export class MemberModalComponent implements OnInit {
     this.MemberModel.btSideId = event.target.selectedOptions[0].dataset.id;
   }
   onMyBirthdayChange(event: any) {
-    const [year,month,day] = event.target.value.split('-');
-    this.MemberModel.birthday = new Date(+year,+month-1,+day);
+    const [year, month, day] = event.target.value.split('-');
+    this.MemberModel.birthday = new Date(+year, +month - 1, +day);
   }
   //#region Private Methods
   private GetRoles(): void {

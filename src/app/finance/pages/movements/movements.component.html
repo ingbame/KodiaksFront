@@ -6,29 +6,29 @@
     <div class=" card">
       <div class=" card-header">
         <div class="row">
-          <div class="col col-mb-11">
+          <div class="col col-mb-10">
             <h1 class=" card-title">
               Saldo (Fondo): <span [ngClass]="total == 0 ? 'neutral-currency' : total > 0 ? 'positive-currency': 'negative-currency'">{{total | currency}}</span>
             </h1>
           </div>
-          <div class="col col-mb-1 text-right">
-            <input class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#movementModal" type="button"
+          <div class="col col-sm-2 text-right">
+            <input class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#movementModal" type="button"
               value="Agregar movimiento" (click)="OpenAddMovementModel()">
           </div>
         </div>
       </div>
       <div class=" card-body">
         <div class=" table-responsive">
-          <table class=" table tablesorter" id="">
-            <thead class=" text-primary">
-              <tr>
+          <table class="table" id="">
+            <thead>
+              <tr  class="text-center">
                 <th>Fecha</th>
                 <th>Tipo </th>
                 <th>Concepto</th>
                 <th>Monto</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
               <tr *ngFor="let movementItem of movements">
                 <td class=" text-center">
                   <a href="#" class="link-Kodiaks" data-bs-toggle="modal" data-bs-target="#detailModal" (click)="onOpenDetailMovement(movementItem)">
@@ -37,10 +37,10 @@
                     </span>
                   </a>
                 </td>
-                <td><span ngbTooltip="{{movementItem.movementTypeDesc}}">{{movementItem.movementTypeKey}}</span></td>
+                <td class=" text-center"><span ngbTooltip="{{movementItem.movementTypeDesc}}">{{movementItem.movementTypeKey}}</span></td>
                 <td>{{movementItem.conceptDesc}}</td>
-                <td class="text-rigth">
-                  <span [ngClass]="movementItem.movementTypeId == 1 ? 'positive-currency': 'negative-currency'">
+                <td class="text-right">
+                  <span class="text-right" [ngClass]="movementItem.movementTypeId == 1 ? 'positive-currency': 'negative-currency'">
                     {{(movementItem.movementTypeId == 2 ? "-" + movementItem.amount : movementItem.amount) | currency}}
                   </span>
                 </td>

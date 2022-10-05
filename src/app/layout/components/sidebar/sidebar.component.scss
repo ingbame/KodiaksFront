@@ -6,7 +6,7 @@
   top: 0;
   width: 5rem;
   height: 100vh;
-  box-shadow: 0.063rem 0 1.25rem 0 #8690A3;
+  //box-shadow: 0.063rem 0 1.25rem 0 #8690A3;
 
   .logo-containter {
     display: flex;
@@ -26,6 +26,12 @@
       font-weight: 900;
       cursor: pointer;
       border: none;
+      .logo-img{
+        margin: 0;
+        padding: 0;
+        width: auto;
+        height: 2rem;
+      }
     }
 
     .logo-text {

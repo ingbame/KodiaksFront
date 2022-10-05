@@ -1,4 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+$black: #000000 !default;
+$white: #FFFFFF !default;
+
+$color-bg-dark-mode: #1E1E2F !default;
+$color-bg-light-mode: #F3F4F8 !default;
+$color-bg-pop-up-dark-mode: #1D2439 !default;
+$color-bg-white-content: #F3F4F8 !default;
+$color-bg-card: #27293D !default;
+
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
@@ -9,11 +17,58 @@ body{
 }
 .black-content{
   transition: background 5s linear;
-  background-color: #1E1E1E;
-  color: white;
+  background-color: $color-bg-dark-mode;
+  color: $white;
+  .card{
+    background-color: $color-bg-card;
+    *{
+      color: $white;
+    }
+  }
+  .btn-info{
+    color: $black;
+    font-weight: bold;
+  }
 }
 .white-content{
   transition: background 5s linear;
-  background-color: white;
+  background-color: $color-bg-light-mode;
   color: black;
+}
+.custom-checkbox-form{
+  font-family: system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1.1em auto;
+  gap: 0.5em;
+}
+.custom-checkbox-label{
+  margin-top: 0.4em;
+}
+.modalKodiaks{
+  color: black !important;
+  input,span,label{
+    color: black !important;
+  }
+  input:disabled{
+    background-color: #D1D1D1 !important;
+  }
+}
+.neutral-currency{
+  color: white !important;
+}
+.positive-currency{
+  color: green !important;
+}
+.negative-currency{
+  color: red !important;
+}
+.link-Kodiaks{
+  color: aqua;
+  text-decoration: underline;
+}
+.link-Kodiaks:hover{
+  color: orange !important;
+  text-decoration: underline;
 }
