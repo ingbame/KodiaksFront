@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { NotificationUtility } from "src/app/shared/utilities/notification";
 import { NotificationEnum } from "src/app/shared/enums/notification-enum";
 import { SideNavToggle } from "../../interfaces/sidenav-toggle.interface";
+import { Extentions } from "src/app/shared/utilities/extentions";
 
 @Component({
   selector: "app-sidebar",
@@ -33,6 +34,7 @@ export class SidebarComponent implements OnInit {
     }
   }
   constructor(
+    private ext: Extentions,
     private layoutService: LayoutService,
     private router: Router,
     private activedRoute: ActivatedRoute,
@@ -43,7 +45,8 @@ export class SidebarComponent implements OnInit {
     if (this.menuItems.length <= 0) {
       this.layoutService.GetMenu().subscribe({
         next: (res) => {
-          res.forEach((item: any) => {
+          this.ext.refreshToken(res.token);
+          res.response.forEach((item: any) => {
             let itemVal: any = ROUTES.filter(menuItem => menuItem.itemKey == item.itemKey)[0];
             if (itemVal != undefined) {
               itemVal.icon = item.iconSource;

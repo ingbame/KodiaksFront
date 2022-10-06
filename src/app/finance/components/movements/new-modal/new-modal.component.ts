@@ -12,6 +12,7 @@ import { MovementsTypeService } from 'src/app/finance/services/movements-type.se
 import { NotificationEnum } from 'src/app/shared/enums/notification-enum';
 import { NotificationUtility } from 'src/app/shared/utilities/notification';
 import jwt_decode from "jwt-decode";
+import { Extentions } from 'src/app/shared/utilities/extentions';
 
 @Component({
   selector: 'app-new-modal',
@@ -28,6 +29,7 @@ export class NewModalComponent implements OnInit {
   @Input() movement: MovementEntity = new MovementEntity();
 
   constructor(
+    private ext: Extentions,
     private movementsTypeService: MovementsTypeService,
     private conceptService: ConceptService,
     private methodService: MethodService,
@@ -48,6 +50,7 @@ export class NewModalComponent implements OnInit {
     if (this.ModelValid(model)) {
       this.movementService.post(model).subscribe({
         next: (res) => {
+          this.ext.refreshToken(res.token);
           this.notification.show(NotificationEnum.success, "Acción", "Guardado correctamente.");
           this.movement = new MovementEntity();
         },
@@ -83,7 +86,7 @@ export class NewModalComponent implements OnInit {
   private getMovementTypes(): void {
     this.movementsTypeService.Get().subscribe({
       next: (res) => {
-        this.movementTypes = res;
+        this.movementTypes = res.response;
       },
       error: (err) => { this.notification.show(NotificationEnum.error, "Error", err); },
       complete: () => { }
@@ -93,7 +96,7 @@ export class NewModalComponent implements OnInit {
   private getConcepts(): void {
     this.conceptService.Get().subscribe({
       next: (res) => {
-        this.concepts = res;
+        this.concepts = res.response;
       },
       error: (err) => { this.notification.show(NotificationEnum.error, "Error", err); },
       complete: () => { }
@@ -102,7 +105,7 @@ export class NewModalComponent implements OnInit {
   private getMethods(): void {
     this.methodService.Get().subscribe({
       next: (res) => {
-        this.methods = res;
+        this.methods = res.response;
       },
       error: (err) => { this.notification.show(NotificationEnum.error, "Error", err); },
       complete: () => { }
@@ -112,7 +115,7 @@ export class NewModalComponent implements OnInit {
     this.memberService.GetMember().subscribe({
       next: (res) => {
         if (!res.error)
-          this.members = res;
+          this.members = res.response;
       },
       error: (err) => { this.notification.show(NotificationEnum.error, "Error", err); },
       complete: () => { }

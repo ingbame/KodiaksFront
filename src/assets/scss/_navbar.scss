@@ -2,6 +2,9 @@ $default: #760f0f !default;
 $black: #000000 !default;
 $white: #FFFFFF !default;
 
+nav{
+  background-color: $default  !important;
+}
 .navbar {
   width: 100%;
   background-color: $default  !important;

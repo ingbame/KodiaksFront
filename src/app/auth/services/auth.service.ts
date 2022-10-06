@@ -14,6 +14,7 @@ export class AuthService {
   constructor(private httpCliente: HttpClient) { }
   login(userName?: string, password?: string): Observable<any> {
     let url = `${environment.kodiaksApi}/Security/Session/LoginAuthentication`;
+    console.log(url);
     this.user = userName ?? "";
     this.pass = password ?? "";
 

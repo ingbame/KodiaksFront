@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationEnum } from 'src/app/shared/enums/notification-enum';
+import { Extentions } from 'src/app/shared/utilities/extentions';
 import { NotificationUtility } from 'src/app/shared/utilities/notification';
 import { MovementEntity } from '../../models/movement';
 import { MovementService } from '../../services/movement.service';
@@ -17,13 +18,14 @@ export class MovementsComponent implements OnInit {
   movements: MovementEntity[] = [];
 
   constructor(
+    private ext: Extentions,
     private movementServices: MovementService,
     private notification: NotificationUtility) { }
 
   updateDataEvent: any = () =>{
     this.movementServices.GetTotal().subscribe({
       next: (res) => {
-        this.total = res;
+        this.total = res.response;
       },
       error: (err) => {
         this.notification.show(NotificationEnum.error, "Error", err.error);
@@ -33,8 +35,9 @@ export class MovementsComponent implements OnInit {
     });
     this.movementServices.Get().subscribe({
       next: (res) => {
-        if (res.length > 0)
-          this.movements = res;
+        this.ext.refreshToken(res.token);
+        if (res.response.length > 0)
+          this.movements = res.response;
       },
       error: (err) => {
         this.notification.show(NotificationEnum.error, "Error", err.error);

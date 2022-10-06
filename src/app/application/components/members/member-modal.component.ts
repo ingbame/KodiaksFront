@@ -14,6 +14,7 @@ import { MemberService } from '../../services/member.service';
 import { RoleService } from '../../services/role.service';
 
 import jwt_decode from "jwt-decode";
+import { Extentions } from 'src/app/shared/utilities/extentions';
 
 @Component({
   selector: 'app-member-modal',
@@ -31,6 +32,7 @@ export class MemberModalComponent implements OnInit {
   @Input() MemberModel: MemberEntity = new MemberEntity();
 
   constructor(
+    private ext: Extentions,
     private memberService: MemberService,
     private statsService: StatsService,
     private notification: NotificationUtility,
@@ -41,7 +43,7 @@ export class MemberModalComponent implements OnInit {
     this.GetBattingThrowingSides();
   }
   onSubmitMemberModal(): void {
-    if (this.actionStr === undefined){
+    if (this.actionStr === undefined) {
       this.actionStr = MemberActionEnum.edit;
       return;
     }
@@ -54,6 +56,7 @@ export class MemberModalComponent implements OnInit {
         if (this.ModelValid(model, true)) {
           this.memberService.AddMember(model).subscribe({
             next: (res) => {
+              this.ext.refreshToken(res.token);
               this.notification.show(NotificationEnum.success, "Acción", "Guardado correctamente.");
               this.MemberModel = new MemberEntity();
               this.actionStr = undefined;
@@ -74,6 +77,7 @@ export class MemberModalComponent implements OnInit {
         if (this.ModelValid(model)) {
           this.memberService.UpdateMember(this.idToEdit, model).subscribe({
             next: (res) => {
+              this.ext.refreshToken(res.token);
               this.notification.show(NotificationEnum.success, "Acción", "Editado correctamente");
               this.MemberModel = new MemberEntity();
               this.actionStr = undefined;
@@ -108,8 +112,8 @@ export class MemberModalComponent implements OnInit {
   private GetRoles(): void {
     this.roleService.GetRole().subscribe({
       next: (res) => {
-        if (!res.error)
-          this.lstRoles = res.model;
+        if (!res.response.error)
+          this.lstRoles = res.response.model;
       },
       error: (err) => { this.notification.show(NotificationEnum.error, "Error", err); },
       complete: () => { }
@@ -118,8 +122,8 @@ export class MemberModalComponent implements OnInit {
   private GetBattingThrowingSides(): void {
     this.statsService.GetBattingThrowingSides().subscribe({
       next: (res) => {
-        if (!res.error)
-          this.lstBattingThrowingSides = res.model;
+        if (!res.response.error)
+          this.lstBattingThrowingSides = res.response.model;
       },
       error: (err) => { this.notification.show(NotificationEnum.error, "Error", err); },
       complete: () => { }
