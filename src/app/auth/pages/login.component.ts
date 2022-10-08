@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NotificationEnum } from 'src/app/shared/enums/notification-enum';
-import { NotificationUtility } from 'src/app/shared/utilities/notification';
 import { ClickMode, Container, Engine, HoverMode, MoveDirection, OutMode } from 'tsparticles-engine';
 import { loadFull } from "tsparticles";
 import { LoginEntity } from '../models/login';
 import { AuthService } from '../services/auth.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -94,16 +94,22 @@ export class LoginComponent implements OnInit {
   logUsr: LoginEntity = new LoginEntity();
   urlRedirect?: string;
 
-  constructor(private authService: AuthService, private router: Router, private activedRoute: ActivatedRoute, private notification: NotificationUtility) { }
+  constructor(
+    private helper: HelperService,
+    private session: SessionService,
+    private authService: AuthService,
+    private router: Router,
+    private activedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.session.token = "";
     this.activedRoute.paramMap.subscribe(param => {
       if (param.get('url') && param.get('url')!!.length > 0) {
         this.urlRedirect = param.get('url')!!;
       }
     });
   }
-  particlesLoaded(container: Container): void {  }
+  particlesLoaded(container: Container): void { }
 
   async particlesInit(engine: Engine): Promise<void> {
     // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
@@ -112,7 +118,7 @@ export class LoginComponent implements OnInit {
     await loadFull(engine);
   }
 
-  showPassword(e:any): void {
+  showPassword(e: any): void {
     const txtPasswordElement: any = document.getElementById("txtPassword");
     if (e.currentTarget.checked) {
       txtPasswordElement.type = "text";
@@ -122,6 +128,7 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(): void {
+    let responeToken: string = "";
     if ((this.logUsr?.userName?.trim() ?? "") == "")
       return;
     if ((this.logUsr?.password?.trim() ?? "") == "")
@@ -131,53 +138,18 @@ export class LoginComponent implements OnInit {
       .subscribe(
         {
           next: (res) => {
-            localStorage.setItem('authUser', JSON.stringify(res));
-
+            localStorage.setItem('authUser', JSON.stringify(res.token));
             if (!this.urlRedirect) {
               this.router.navigateByUrl('');
             } else {
               this.router.navigateByUrl(this.urlRedirect);
             }
-
-
           },
           error: (err) => {
-            this.notification.show(NotificationEnum.error, "Error", err.error);
+            this.helper.httpCatchError(err);
           },
-          complete: () => { }
+          complete: () => {
+           }
         });
-  }
-
-  Validate(inputStr: any, elementName: string, type?: string): boolean {
-    switch (type) {
-      case "email":
-        if (inputStr.trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-          this.showHideValidate(elementName, true);
-          return false;
-        }
-        break;
-      case "phone":
-        if (inputStr.trim().match(/^\d{10}$/) == null) {
-          this.showHideValidate(elementName, true);
-          return false;
-        }
-        break;
-      default:
-        if (inputStr.trim() == "") {
-          this.showHideValidate(elementName, true);
-          return false;
-        }
-        break;
-    }
-    this.showHideValidate(elementName, false);
-    return true;
-  }
-
-  showHideValidate(inputName: string, show: boolean): void {
-    var thisAlert = document.getElementsByName(inputName)[0].parentElement;
-    if (show)
-      thisAlert?.classList.add("alert-validate");
-    else
-      thisAlert?.classList.remove("alert-validate");
   }
 }

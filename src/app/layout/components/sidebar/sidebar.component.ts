@@ -1,13 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
 import { ROUTES } from "../../models/items-menu";
 import { LayoutService } from "../../services/layout.service";
-
-import jwt_decode from "jwt-decode";
-import { Router, ActivatedRoute } from "@angular/router";
-import { NotificationUtility } from "src/app/shared/utilities/notification";
-import { NotificationEnum } from "src/app/shared/enums/notification-enum";
 import { SideNavToggle } from "../../interfaces/sidenav-toggle.interface";
-import { Extentions } from "src/app/shared/utilities/extentions";
+import { HelperService } from "src/app/shared/services/helper.service";
+import { SessionService } from "src/app/auth/services/session.service";
 
 @Component({
   selector: "app-sidebar",
@@ -34,28 +30,28 @@ export class SidebarComponent implements OnInit {
     }
   }
   constructor(
-    private ext: Extentions,
-    private layoutService: LayoutService,
-    private router: Router,
-    private activedRoute: ActivatedRoute,
-    private notification: NotificationUtility) { }
+    private helper: HelperService,
+    private session: SessionService,
+    private layoutService: LayoutService) { }
 
   ngOnInit() {
     this.screenWidth = window.innerWidth;
     if (this.menuItems.length <= 0) {
       this.layoutService.GetMenu().subscribe({
         next: (res) => {
-          this.ext.refreshToken(res.token);
-          res.response.forEach((item: any) => {
-            let itemVal: any = ROUTES.filter(menuItem => menuItem.itemKey == item.itemKey)[0];
-            if (itemVal != undefined) {
-              itemVal.icon = item.iconSource;
-              this.menuItems.push(itemVal)
-            }
-          });
+          if (!res?.token || res.token != "") {
+            this.session.token = res.token;
+            res.response.forEach((item: any) => {
+              let itemVal: any = ROUTES.filter(menuItem => menuItem.itemKey == item.itemKey)[0];
+              if (itemVal != undefined) {
+                itemVal.icon = item.iconSource;
+                this.menuItems.push(itemVal)
+              }
+            });
+          }
         },
         error: (err) => {
-          this.notification.show(NotificationEnum.error, "Error", err.error);
+          this.helper.httpCatchError(err);
         },
         complete: () => { }
       });

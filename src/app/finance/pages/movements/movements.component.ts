@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationEnum } from 'src/app/shared/enums/notification-enum';
-import { Extentions } from 'src/app/shared/utilities/extentions';
-import { NotificationUtility } from 'src/app/shared/utilities/notification';
+import { SessionService } from 'src/app/auth/services/session.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { MovementEntity } from '../../models/movement';
 import { MovementService } from '../../services/movement.service';
 
@@ -18,9 +17,9 @@ export class MovementsComponent implements OnInit {
   movements: MovementEntity[] = [];
 
   constructor(
-    private ext: Extentions,
-    private movementServices: MovementService,
-    private notification: NotificationUtility) { }
+    private helper: HelperService,
+    private session: SessionService,
+    private movementServices: MovementService) { }
 
   updateDataEvent: any = () =>{
     this.movementServices.GetTotal().subscribe({
@@ -28,22 +27,21 @@ export class MovementsComponent implements OnInit {
         this.total = res.response;
       },
       error: (err) => {
-        this.notification.show(NotificationEnum.error, "Error", err.error);
+        this.helper.httpCatchError(err);
       },
       complete: () => { }
 
     });
     this.movementServices.Get().subscribe({
       next: (res) => {
-        this.ext.refreshToken(res.token);
+        this.session.token = res.token;
         if (res.response.length > 0)
           this.movements = res.response;
       },
       error: (err) => {
-        this.notification.show(NotificationEnum.error, "Error", err.error);
+        this.helper.httpCatchError(err);
       },
       complete: () => { }
-
     });
   };
   ngOnInit(): void {

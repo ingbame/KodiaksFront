@@ -5,10 +5,12 @@ import { NotificationEnum } from '../enums/notification-enum';
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationUtility {
-  constructor(private toastr: ToastrService) { }
+export class HelperService {
 
-  show(type: NotificationEnum, title: string, message: any) {
+  constructor(
+    private toastr: ToastrService) { }
+
+  showMessage(type: NotificationEnum, title: string, message: any) {
     switch (type) {
       case NotificationEnum.info:
         this.toastr.info(message, title, {
@@ -29,7 +31,7 @@ export class NotificationUtility {
         });
         break;
       case NotificationEnum.error:
-        this.toastr.error( message, title, {
+        this.toastr.error(message, title, {
           closeButton: true,
           positionClass: 'toast-bottom-right'
         });
@@ -40,6 +42,24 @@ export class NotificationUtility {
           positionClass: 'toast-bottom-right'
         });
         break;
+    }
+  }
+
+  httpCatchError(err: any) {
+    if (err.error != null)
+      this.showMessage(NotificationEnum.error, "Error", err.error);
+    else {
+      switch (err.status) {
+        case 401: //Unauthorized
+          this.showMessage(NotificationEnum.error, "Error", "No autorizado");
+          break;
+        case 403: //Forbidden
+          this.showMessage(NotificationEnum.error, "Error", "No tiene los permisos para acceder");
+          break;
+        case 404: //Not Found
+          this.showMessage(NotificationEnum.error, "Error", "Página no encontrada");
+          break;
+      }
     }
   }
 }

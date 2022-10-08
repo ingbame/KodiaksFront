@@ -3,6 +3,7 @@ import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ROUTES } from "../../models/items-menu";
+import { SessionService } from "src/app/auth/services/session.service";
 
 @Component({
   selector: "app-navbar",
@@ -10,6 +11,8 @@ import { ROUTES } from "../../models/items-menu";
   styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  usrFullName: string = "";
+  role: string = "";
   private listTitles: any[] = [];
   location: Location;
   mobile_menu_visible: any = 0;
@@ -21,6 +24,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   closeResult: string = '';
 
   constructor(
+    private session: SessionService,
     location: Location,
     private element: ElementRef,
     private router: Router,
@@ -41,6 +45,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
      }
    };
   ngOnInit() {
+    this.usrFullName = this.session.name;
+    this.role = this.session.role;
     window.addEventListener("resize", this.updateColor);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;

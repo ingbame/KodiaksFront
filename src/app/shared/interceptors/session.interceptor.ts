@@ -10,22 +10,25 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { SessionService } from 'src/app/auth/services/session.service';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
+export class SessionInterceptor implements HttpInterceptor {
 
   constructor(
-    private sessionService: SessionService) { }
+    private authService: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let newRequest = request;
     let update: any = {};
-    if (this.sessionService.token != "") {
+    if (this.authService.user.trim() != "" && this.authService.pass.trim() != "") {
       update = {
         setHeaders: {
-          authorization: `Bearer ${this.sessionService.token}`
+          authorization: `Basic ${window.btoa(this.authService.user.trim() + ":" + this.authService.pass.trim())}`
         }
       };
       newRequest = request.clone(update);
+      this.authService.user = "";
+      this.authService.pass = "";
     }
+
     return next.handle(newRequest);
   }
 }

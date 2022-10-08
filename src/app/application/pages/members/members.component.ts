@@ -1,8 +1,7 @@
 import { Component, OnInit, ɵisListLikeIterable } from '@angular/core';
+import { SessionService } from 'src/app/auth/services/session.service';
 import { MemberActionEnum } from 'src/app/shared/enums/member-action-enum';
-import { NotificationEnum } from 'src/app/shared/enums/notification-enum';
-import { Extentions } from 'src/app/shared/utilities/extentions';
-import { NotificationUtility } from 'src/app/shared/utilities/notification';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { MemberEntity } from '../../models/member';
 
 import { MemberService } from '../../services/member.service';
@@ -13,25 +12,26 @@ import { MemberService } from '../../services/member.service';
   styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements OnInit {
+  usrRol?: any;
   actionStr?: MemberActionEnum;
   lstMembers: MemberEntity[] = [];
   idToEdit?: number;
   MemberModel: MemberEntity = new MemberEntity();
 
   constructor(
-    private ext: Extentions,
-    private memberService: MemberService,
-    private notification: NotificationUtility) { }
+    private helper: HelperService,
+    private session: SessionService,
+    private memberService: MemberService) { }
 
   updateDataEvent: any = () => {
     this.memberService.GetMember().subscribe({
       next: (res) => {
-        this.ext.refreshToken(res.token);
+        this.session.token = res.token;
         if (res.response.length > 0)
           this.lstMembers = res.response;
       },
       error: (err) => {
-        this.notification.show(NotificationEnum.error, "Error", err.error);
+        this.helper.httpCatchError(err);
       },
       complete: () => { }
 
