@@ -41,11 +41,6 @@ export class MemberModalComponent implements OnInit {
     this.GetBattingThrowingSides();
   }
   onSubmitMemberModal(): void {
-    if (this.actionStr === MemberActionEnum.detail) {
-      this.actionStr = MemberActionEnum.edit;
-      return;
-    }
-
     let model: any = {};
     switch (this.actionStr) {
       case MemberActionEnum.add:
@@ -63,7 +58,6 @@ export class MemberModalComponent implements OnInit {
             complete: () => {
               this.helper.showMessage(NotificationEnum.success, "Acción", "Guardado correctamente.");
               this.MemberModel = new MemberEntity();
-              this.actionStr = undefined;
               var myModal = document.getElementById('memberModalClose');
               myModal?.click();
               this.saveEvent();
@@ -85,7 +79,6 @@ export class MemberModalComponent implements OnInit {
             complete: () => {
               this.helper.showMessage(NotificationEnum.success, "Acción", "Editado correctamente");
               this.MemberModel = new MemberEntity();
-              this.actionStr = undefined;
               var myModal = document.getElementById('memberModalClose');
               myModal?.click();
               this.saveEvent();
@@ -96,7 +89,6 @@ export class MemberModalComponent implements OnInit {
     }
   }
   onClickCancel(): void {
-    this.actionStr = undefined;
     var myModal = document.getElementById('memberModalClose');
     myModal?.click();
   }

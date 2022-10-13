@@ -29,11 +29,12 @@ export class RoleDirective implements OnInit {
   }
   private checkPermissions(): boolean {
     let hasPermission = false;
-    if(this.session && this.session.role){
+    if (this.session && this.session.role) {
       for (const checkPermission of this.permissions) {
         const permissionFound = this.session.role.toUpperCase() === checkPermission.toUpperCase();
-        if(permissionFound){
-          hasPermission = true;
+        if (permissionFound) {
+          if (this.session.canEdit)
+            hasPermission = true;
           break;
         }
       }

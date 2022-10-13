@@ -1,4 +1,5 @@
-<app-member-modal [actionStr]="actionStr" [MemberModel]="MemberModel" [idToEdit]="idToEdit" [saveEvent]="updateDataEvent"></app-member-modal>
+<app-member-modal [actionStr]="actionStr" [MemberModel]="MemberModel" [idToEdit]="idToEdit"
+  [saveEvent]="updateDataEvent"></app-member-modal>
 
 <div class=" row">
   <div class=" col-md-12">
@@ -9,8 +10,10 @@
             <h1 class=" card-title">Miembros del equipo</h1>
           </div>
           <div class="col col-md-2 text-end">
-            <input class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
-              value="Agregar" (click)="OpenAddMemberModel()" [appCanEdit]="[]">
+            <button class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#memberModal"
+              type="button" (click)="OpenAddMemberModel()" [appCanEdit]="[]">
+              <i class="fa-solid fa-user-plus"></i> Agregar
+            </button>
           </div>
         </div>
       </div>
@@ -31,8 +34,10 @@
                 <td>{{member.nickName}}</td>
                 <td>{{member.shirtNumber}}</td>
                 <td class=" text-center">
-                  <input class="btn btn-info w-100 h-100" data-bs-toggle="modal" data-bs-target="#memberModal" type="button"
-                  value="Detalle" (click)="onEditMember(member)">
+                  <button class="btn btn-info w-100 h-100" data-bs-toggle="modal" data-bs-target="#memberModal"
+                    type="button" (click)="onEditMember(member)">
+                    <i class="fa-solid fa-user-pen"></i> Detalle
+                  </button>
                 </td>
               </tr>
             </tbody>

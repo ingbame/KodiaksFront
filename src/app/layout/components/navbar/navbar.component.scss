@@ -3,10 +3,10 @@ $black: #000000 !default;
 $white: #FFFFFF !default;
 
 .navbar {
-  background-color: $default  !important;
+  background-color: $default !important;
 
   * {
-    background-color: $default  !important;
+    background-color: $default !important;
     color: $white;
   }
 
@@ -71,7 +71,7 @@ $white: #FFFFFF !default;
           &:focus,
           &:active,
           &:active:focus {
-            color: $black  !important;
+            color: $black !important;
           }
         }
       }

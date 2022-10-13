@@ -17,7 +17,7 @@
           <div class="col-md-6">
             <label for="ddlRoleDesc" class="form-label">Rol</label>
             <select #ddlRole name="ddlRoleDesc" class="form-select" [(ngModel)]="MemberModel.roleDesc"
-              (change)="onDdlRoleChange($event)" *appRole="['SuperAdmin','Admin']" [appCanEdit]="['SuperAdmin']">
+              (change)="onDdlRoleChange($event)" [appCanEdit]="['SuperAdmin']">
               <option selected [attr.data-id]="0">Seleccione</option>
               <option *ngFor="let item of lstRoles" [attr.data-id]="item.roleId">{{item.roleDescription}}</option>
             </select>
@@ -91,10 +91,10 @@
               </div>
             </div>
           </div>
-          <div class="col-12 text-end">
-            <button type="button" class="btn  w-50 p-3 btn-danger" [style]="actionStr === MemberActionEnum.detail || actionStr === MemberActionEnum.add ? 'display: none;' : ''" (click)="onClickCancel()">Cancelar</button>
-            <button type="submit" class="btn  p-3" [ngClass]="actionStr === MemberActionEnum.detail ? 'w-100 btn-warning' : 'w-50 btn-success'" [appCanEdit]="[]">
-              {{actionStr === MemberActionEnum.detail ? 'Editar' : 'Guardar'}}
+          <div class="col-12 text-end" *appRole="['SuperAdmin','Admin']">
+            <button type="button" class="btn  w-50 p-3 btn-danger" (click)="onClickCancel()">Cancelar</button>
+            <button type="submit" class="btn  p-3 w-50 btn-success">
+              Guardar
             </button>
           </div>
         </form>

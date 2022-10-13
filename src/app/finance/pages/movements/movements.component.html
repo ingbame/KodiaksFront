@@ -8,11 +8,14 @@
         <div class="row gy-2 gx-3 align-items-center w-100">
           <div class="col-sm-10">
             <h1>
-              Saldo Actual (Fondo): <span [ngClass]="total == 0 ? 'neutral-currency' : total > 0 ? 'positive-currency': 'negative-currency'">{{total | currency}}</span>
+              Saldo Actual (Fondo): <span
+                [ngClass]="total == 0 ? 'neutral-currency' : total > 0 ? 'positive-currency': 'negative-currency'">{{total
+                | currency}}</span>
             </h1>
           </div>
           <div class="col-sm-2 text-right">
-            <button class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#movementModal" type="button" (click)="OpenAddMovementModel()">
+            <button class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#movementModal"
+              type="button" (click)="OpenAddMovementModel()" [appCanEdit]="[]">
               <i class="fa-solid fa-plus-minus"></i> Agregar movimiento
             </button>
           </div>
@@ -47,13 +50,14 @@
             </select>
           </div>
           <div class="col-sm-1">
-            <button name="refreshData" class="btn btn-primary w-100" type="button" (click)="getMovements()"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+            <button name="refreshData" class="btn btn-primary w-100" type="button" (click)="getMovements()"><i
+                class="fa-solid fa-arrows-rotate"></i> Refresh</button>
           </div>
         </div>
         <div class=" table-responsive">
           <table class="table">
             <thead>
-              <tr  class="text-center">
+              <tr class="text-center">
                 <th>Fecha</th>
                 <th>Tipo </th>
                 <th>Concepto</th>
@@ -63,7 +67,8 @@
             <tbody class="table-group-divider">
               <tr *ngFor="let movementItem of movements">
                 <td class=" text-center">
-                  <a href="#" class="link-Kodiaks" data-bs-toggle="modal" data-bs-target="#detailModal" (click)="onOpenDetailMovement(movementItem)">
+                  <a href="#" class="link-Kodiaks" data-bs-toggle="modal" data-bs-target="#detailModal"
+                    (click)="onOpenDetailMovement(movementItem)">
                     <span ngbTooltip="{{movementItem.fullName}}">
                       {{movementItem.movementDate | date:'dd/MM/yyyy'}}
                     </span>
@@ -76,7 +81,8 @@
                   {{movementItem.conceptDesc}}
                 </td>
                 <td class="text-end">
-                  <span class="text-end" [ngClass]="movementItem.movementTypeId == 1 ? 'positive-currency': 'negative-currency'">
+                  <span class="text-end"
+                    [ngClass]="movementItem.movementTypeId == 1 ? 'positive-currency': 'negative-currency'">
                     {{(movementItem.movementTypeId == 2 ? "-" + movementItem.amount : movementItem.amount) | currency}}
                   </span>
                 </td>
