@@ -11,6 +11,7 @@ export class SessionService {
   private _name: string = "";
   private _givenName: string = "";
   private _role: string = "";
+  private _canEdit: boolean = false;
   private _expires?: number;
 
   constructor() { }
@@ -44,9 +45,14 @@ export class SessionService {
     this._role = session?.role ?? "";
     return this._role;
   }
+  get canEdit() {
+    const session = this.getLocalSession();
+    this._canEdit = session?.canEdit ?? false;
+    return this._canEdit;
+  }
   get expires() {
     const session = this.getLocalSession();
-    this._expires = session?.expires ?? "";
+    this._expires = session?.expires ?? -1;
     return this._expires;
   }
 
@@ -68,12 +74,15 @@ export class SessionService {
           return session;
         }
 
+        let userData = JSON.parse(decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata']);
+
         session = {
           token: authUser,
-          nameIdentifier: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameIdentifier'],
+          nameIdentifier: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
           name: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
-          givenName: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenName'],
+          givenName: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'],
           role: decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+          canEdit: userData.CanEdit,
           expires: expireDate
         };
       } else {

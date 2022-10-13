@@ -6,6 +6,7 @@ $color-bg-light-mode: #F3F4F8 !default;
 $color-bg-pop-up-dark-mode: #1D2439 !default;
 $color-bg-white-content: #F3F4F8 !default;
 $color-bg-card: #27293D !default;
+$color-bg-card-white: #FFFFFF !default;
 
 
 /* Importing Bootstrap SCSS file. */
@@ -24,6 +25,12 @@ body{
     *{
       color: $white;
     }
+    input{
+      color: $black;
+    }
+    select, select > *{
+      color: $black;
+    }
   }
   .btn-info{
     color: $black;
@@ -38,6 +45,12 @@ body{
   transition: background 1s linear;
   background-color: $color-bg-light-mode;
   color: black;
+  .card{
+    background-color: $color-bg-card-white;
+    *{
+      color: $black;
+    }
+  }
 }
 .custom-checkbox-form{
   font-family: system-ui, sans-serif;
@@ -75,5 +88,13 @@ body{
 .link-Kodiaks:hover{
   color: orange !important;
   text-decoration: underline;
+}
+.footer {
+  position: relative;
+  width: 100%;
+  background: transparent;
+  bottom: 0;
+  color: #fff;
+  z-index: 1;
 }
 

@@ -1,9 +1,134 @@
 <div class="row">
-  <div class="col-6">
-    <canvas id="myChart"></canvas>
-  </div>
-  <div class="col-6">
-
+  <div class=" col-md-12">
+    <div class=" card w-100">
+      <div class=" card-header">
+        <div class="row">
+          <div class="col col-sm-9">
+            <h1 class=" card-title">Tablero de movimientos</h1>
+          </div>
+          <div class="col-sm-3 text-end">
+            <h3>Saldo actual(Fondo) <span
+                [ngClass]="total == 0 ? 'neutral-currency' : total > 0 ? 'positive-currency': 'negative-currency'">{{total
+                | currency}}</span></h3>
+          </div>
+        </div>
+      </div>
+      <div class=" card-body">
+        <div class="row gy-2 gx-3 align-items-center w-100">
+          <div class="col-sm-9">
+            <h3>Busqueda por Año y fecha</h3>
+          </div>
+          <div class="col-sm-1">
+            <select class="form-select w-100" [(ngModel)]="year" (change)="onDdlYearChange($event)">
+              <option value="undefined" selected>Año</option>
+              <option *ngFor="let item of yearSelect" [value]="item">{{item}}</option>
+            </select>
+          </div>
+          <div class="col-sm-1">
+            <select class="form-select w-100" [(ngModel)]="month" (change)="onDdlMonthChange($event)">
+              <option value="undefined" selected>Mes</option>
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Septiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
+            </select>
+          </div>
+          <div class="col-sm-1">
+            <button name="refreshData" class="btn btn-primary w-100" type="button" (click)="refreshModel()"><i
+                class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
+<div class="row mt-3 charts-row">
+  <div class=" col-md-6">
+    <div class=" card">
+      <div class=" card-header">
+        <div class="row">
+          <div class="col col-lg-12">
+            <h3 class=" card-title">Ingresos y gastos del mes</h3>
+          </div>
+        </div>
+      </div>
+      <div class=" card-body">
+        <app-chart-in-outs-mov [infoGroup]="infoGroup"></app-chart-in-outs-mov>
+      </div>
+    </div>
+  </div>
+  <div class=" col-md-6">
+    <div class=" card">
+      <div class=" card-header">
+        <div class="row">
+          <div class="col col-lg-12">
+            <h1 class=" card-title">Ingresos Vs Egresos</h1>
+          </div>
+        </div>
+      </div>
+      <div class=" card-body">
+        <div class="row">
+          <app-chart-in-outs-mov-g [infoGroup]="infoGroup"></app-chart-in-outs-mov-g>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-3 charts-row">
+  <div class=" col-md-12">
+    <div class=" card w-100">
+      <div class=" card-header">
+        <div class="row">
+          <div class="col col-lg-12">
+            <h1 class=" card-title">Tablero de movimientos</h1>
+          </div>
+        </div>
+      </div>
+      <div class=" card-body">
+        <div class=" table-responsive">
+          <table class="table" id="">
+            <thead>
+              <tr class="text-center">
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Nombre</th>
+                <th>Tipo </th>
+                <th>Concepto</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let movementItem of movements">
+                <td class=" text-center">
+                  {{movementItem.movementDate | date:'dd/MM/yyyy'}}
+                </td>
+                <td class="text-end">
+                  <span class="text-end"
+                    [ngClass]="movementItem.movementTypeId == 1 ? 'positive-currency': 'negative-currency'">
+                    {{(movementItem.movementTypeId == 2 ? "-" + movementItem.amount : movementItem.amount) | currency}}
+                  </span>
+                </td>
+                <td class=" text-center">
+                  {{movementItem.fullName}}
+                </td>
+                <td class=" text-center">
+                  <span ngbTooltip="{{movementItem.movementTypeDesc}}">{{movementItem.movementTypeKey}}</span>
+                </td>
+                <td class=" text-center">
+                  {{movementItem.conceptDesc}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

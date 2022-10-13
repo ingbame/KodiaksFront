@@ -41,7 +41,7 @@ export class MemberModalComponent implements OnInit {
     this.GetBattingThrowingSides();
   }
   onSubmitMemberModal(): void {
-    if (this.actionStr === undefined) {
+    if (this.actionStr === MemberActionEnum.detail) {
       this.actionStr = MemberActionEnum.edit;
       return;
     }
@@ -97,6 +97,8 @@ export class MemberModalComponent implements OnInit {
   }
   onClickCancel(): void {
     this.actionStr = undefined;
+    var myModal = document.getElementById('memberModalClose');
+    myModal?.click();
   }
   onDdlRoleChange(event: any) {
     this.MemberModel.roleId = event.target.selectedOptions[0].dataset.id;

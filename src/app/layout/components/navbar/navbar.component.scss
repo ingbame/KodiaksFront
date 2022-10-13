@@ -3,7 +3,6 @@ $black: #000000 !default;
 $white: #FFFFFF !default;
 
 .navbar {
-  width: 100%;
   background-color: $default  !important;
 
   * {
@@ -18,9 +17,6 @@ $white: #FFFFFF !default;
   .collapse {
     right: 0 !important;
     width: 100px !important;
-    border-width: 1px !important;
-    border-color: green !important;
-    border-style: dashed solid !important;
   }
 
   .photo {

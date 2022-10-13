@@ -19,7 +19,7 @@ import { MainPanelComponent } from './components/main-panel/main-panel.component
     SidebarComponent,
     FooterComponent,
     LayoutComponent,
-    MainPanelComponent,
+    MainPanelComponent
   ],
   imports: [
     CommonModule,

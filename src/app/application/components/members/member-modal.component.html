@@ -4,17 +4,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="memberModalLabel">{{actionStr === undefined ? 'Información' : actionStr}} miembro</h1>
+        <h1 class="modal-title" id="memberModalLabel">{{actionStr}} miembro</h1>
         <button id="memberModalClose" type="button" class="btn-close" data-bs-dismiss="modal"
           aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form (ngSubmit)="onSubmitMemberModal()" #form="ngForm" class="row g-3">
-          <input type="hidden" name="hfUserId" [(ngModel)]="MemberModel.userId">
-          <input type="hidden" name="hfRoleId" [(ngModel)]="MemberModel.roleId">
-          <input type="hidden" name="hfBTSideId" [(ngModel)]="MemberModel.btSideId">
-          <input type="hidden" name="hfPhotoUrl" [(ngModel)]="MemberModel.photoUrl">
-
           <div class="col-md-6">
             <label for="txtMemberId" class="form-label">ID</label>
             <input type="text" class="form-control" name="txtMemberId" disabled [(ngModel)]="MemberModel.memberId">
@@ -22,41 +17,41 @@
           <div class="col-md-6">
             <label for="ddlRoleDesc" class="form-label">Rol</label>
             <select #ddlRole name="ddlRoleDesc" class="form-select" [(ngModel)]="MemberModel.roleDesc"
-              (change)="onDdlRoleChange($event)">
+              (change)="onDdlRoleChange($event)" *appRole="['SuperAdmin','Admin']" [appCanEdit]="['SuperAdmin']">
               <option selected [attr.data-id]="0">Seleccione</option>
               <option *ngFor="let item of lstRoles" [attr.data-id]="item.roleId">{{item.roleDescription}}</option>
             </select>
           </div>
           <div class="col-md-12">
             <label for="txtFullName" class="form-label">Nombre completo</label>
-            <input type="text" class="form-control" name="txtFullName" [(ngModel)]="MemberModel.fullName">
+            <input type="text" class="form-control" name="txtFullName" [(ngModel)]="MemberModel.fullName" [appCanEdit]="[]">
           </div>
           <div class="col-md-6">
             <label for="txtNickName" class="form-label">Apodo</label>
-            <input type="text" class="form-control" name="txtNickName" [(ngModel)]="MemberModel.nickName">
+            <input type="text" class="form-control" name="txtNickName" [(ngModel)]="MemberModel.nickName" [appCanEdit]="[]">
           </div>
           <div class="col-2">
             <label for="txtShirtNumber" class="form-label">N°</label>
-            <input type="text" class="form-control" name="txtShirtNumber" [(ngModel)]="MemberModel.shirtNumber">
+            <input type="text" class="form-control" name="txtShirtNumber" [(ngModel)]="MemberModel.shirtNumber" [appCanEdit]="[]">
           </div>
           <div class="col-4">
             <label for="txtBirthday" class="form-label">Cumpleaños</label>
             <input type="date" class="form-control w-100" id="txtBirthday" name="txtBirthday"
               [ngModel]="MemberModel.birthday | date:'yyyy-MM-dd'" #myBirthday
-              [value]="MemberModel.birthday | date:'yyyy-MM-dd'" (change)="onMyBirthdayChange($event)">
+              [value]="MemberModel.birthday | date:'yyyy-MM-dd'" (change)="onMyBirthdayChange($event)" [appCanEdit]="[]">
           </div>
           <div class="col-md-6">
             <label for="txtCellPhoneNumber" class="form-label">Celular</label>
-            <input type="text" class="form-control" name="txtCellPhoneNumber" [(ngModel)]="MemberModel.cellPhoneNumber">
+            <input type="text" class="form-control" name="txtCellPhoneNumber" [(ngModel)]="MemberModel.cellPhoneNumber"  [appCanEdit]="[]">
           </div>
           <div class="col-md-6">
             <label for="txtEmail" class="form-label">Correo</label>
-            <input type="email" class="form-control" name="txtEmail" [(ngModel)]="MemberModel.email">
+            <input type="email" class="form-control" name="txtEmail" [(ngModel)]="MemberModel.email"  [appCanEdit]="[]">
           </div>
           <div class="col-md-6">
             <label for="bTSideDesc" class="form-label">Bateo/Lanzamiento</label>
             <select #ddlBtSide name="bTSideDesc" class="form-select" [(ngModel)]="MemberModel.btSideDesc"
-              (change)="onDdlBtSideChange($event)">
+              (change)="onDdlBtSideChange($event)"  [appCanEdit]="[]">
               <option selected [attr.data-id]="0">Seleccione</option>
               <option *ngFor="let item of lstBattingThrowingSides" [attr.data-id]="item.btsideId"
                 [attr.data-key-val]="item.keyValue">{{item.btsideDesc}}</option>
@@ -66,13 +61,13 @@
             <label for="dtCreatedDate" class="form-label">Fecha de creación</label>
             <input type="datetime" class="form-control" name="dtCreatedDate" disabled
               [ngModel]="MemberModel.createdDate | date:'dd/MM/yyyy HH:mm:ss'"
-              [value]="MemberModel.createdDate | date:'dd/MM/yyyy HH:mm:ss'">
+              [value]="MemberModel.createdDate | date:'dd/MM/yyyy HH:mm:ss'" [appCanEdit]="[]">
           </div>
           <div class="col-12" *ngIf="!(this.actionStr == MemberActionEnum.add)">
             <div class="row">
               <div class="col-4">
                 <div class="custom-checkbox-form">
-                  <input type="checkbox" value="" name="cbxCanEdit" [(ngModel)]="MemberModel.canEdit">
+                  <input type="checkbox" value="" name="cbxCanEdit" [(ngModel)]="MemberModel.canEdit" [appCanEdit]="['SuperAdmin']">
                   <label class="custom-checkbox-label" for="cbxCanEdit">
                     Puede editar
                   </label>
@@ -80,7 +75,7 @@
               </div>
               <div class="col-4">
                 <div class="custom-checkbox-form">
-                  <input type="checkbox" value="" name="cbxIsVerified" disabled [(ngModel)]="MemberModel.isVerified">
+                  <input type="checkbox" value="" name="cbxIsVerified" disabled [(ngModel)]="MemberModel.isVerified" [appCanEdit]="['SuperAdmin']">
                   <label class="custom-checkbox-label" for="cbxIsVerified">
                     Verificado
                   </label>
@@ -88,7 +83,7 @@
               </div>
               <div class="col-4">
                 <div class="custom-checkbox-form">
-                  <input type="checkbox" value="" name="cbxIsActive" [(ngModel)]="MemberModel.isActive">
+                  <input type="checkbox" value="" name="cbxIsActive" [(ngModel)]="MemberModel.isActive" [appCanEdit]="['SuperAdmin']">
                   <label class="custom-checkbox-label" for="cbxIsActive">
                     Activo
                   </label>
@@ -97,9 +92,9 @@
             </div>
           </div>
           <div class="col-12 text-end">
-            <button type="button" class="btn  w-50 p-3 btn-danger" [style]="actionStr === undefined ? 'display: none;' : ''" (click)="onClickCancel()">Cancelar</button>
-            <button type="submit" class="btn  p-3" [ngClass]="actionStr === undefined ? 'w-100 btn-warning' : 'w-50 btn-success'">
-              {{actionStr === undefined ? 'Editar' : 'Guardar'}}
+            <button type="button" class="btn  w-50 p-3 btn-danger" [style]="actionStr === MemberActionEnum.detail || actionStr === MemberActionEnum.add ? 'display: none;' : ''" (click)="onClickCancel()">Cancelar</button>
+            <button type="submit" class="btn  p-3" [ngClass]="actionStr === MemberActionEnum.detail ? 'w-100 btn-warning' : 'w-50 btn-success'" [appCanEdit]="[]">
+              {{actionStr === MemberActionEnum.detail ? 'Editar' : 'Guardar'}}
             </button>
           </div>
         </form>

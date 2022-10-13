@@ -4,13 +4,14 @@
       <i class="fa-solid fa-bars"></i>
     </a>
     <a class=" navbar-brand" href="javascript:void(0)"> {{ getTitle() }} </a>
-    <!-- <marquee behavior="scroll" direction="left">Prueba de futuras noticias sdfsfsfdsdffffffffffsdggergegegegfgdfgseefbertsdgdfgseregdvdfdgergg</marquee> -->
     <button aria-label="Toggle navigation" class=" navbar-toggler" (click)="collapse()"
       [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" id="navigation" type="button">
       <i class="fa-solid fa-ellipsis-vertical"></i>
     </button>
     <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
-      <h5>{{usrFullName}} <b>Permisos: {{role}}</b></h5>
+      <div class="w-100 text-end">
+        <h5>{{usrFullName}} <b>Permisos: {{role}}</b></h5>
+      </div>
       <ul class=" navbar-nav me-auto mb-2 mb-lg-0">
         <li class=" nav-item" ngbDropdown>
           <a class=" nav-link" data-toggle="dropdown" href="javascript:void(0)" ngbDropdownToggle>

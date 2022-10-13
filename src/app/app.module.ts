@@ -8,13 +8,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from "./shared/interceptors/token.interceptor";
 import { ToastrModule } from 'ngx-toastr';
-import { RoleDirective } from './shared/directives/role.directive';
 import { SessionInterceptor } from "./shared/interceptors/session.interceptor";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RoleDirective
+    AppComponent
   ],
   imports: [
     BrowserModule,

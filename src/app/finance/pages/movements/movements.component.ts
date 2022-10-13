@@ -11,6 +11,12 @@ import { MovementService } from '../../services/movement.service';
 })
 export class MovementsComponent implements OnInit {
   declare bootstrap?: any;
+
+  year: number = new Date().getFullYear();
+  month: number = new Date().getMonth() + 1;
+
+  yearSelect: any[] = [];
+
   total: number = 0.00;
   movement: MovementEntity = new MovementEntity();
   movementEdit: MovementEntity = new MovementEntity();
@@ -21,7 +27,7 @@ export class MovementsComponent implements OnInit {
     private session: SessionService,
     private movementServices: MovementService) { }
 
-  updateDataEvent: any = () =>{
+  updateDataEvent: any = () => {
     this.movementServices.GetTotal().subscribe({
       next: (res) => {
         this.total = res.response;
@@ -32,20 +38,31 @@ export class MovementsComponent implements OnInit {
       complete: () => { }
 
     });
-    this.movementServices.Get().subscribe({
+    this.getMovements();
+  };
+  ngOnInit(): void {
+    for (let index = 2022; index <= (2022 + 10); index++) {
+      this.yearSelect.push(index);
+    }
+    this.updateDataEvent(this.year, this.month);
+  }
+  getMovements(): void {
+    this.movementServices.Get(undefined, this.year, this.month).subscribe({
       next: (res) => {
         this.session.token = res.token;
-        if (res.response.length > 0)
-          this.movements = res.response;
+        this.movements = res.response;
       },
       error: (err) => {
         this.helper.httpCatchError(err);
       },
       complete: () => { }
     });
-  };
-  ngOnInit(): void {
-    this.updateDataEvent();
+  }
+  onDdlYearChange(e: any): void {
+    this.year = e.target.value !== "undefined" ? e.target.value : undefined;
+  }
+  onDdlMonthChange(e: any): void {
+    this.month = e.target.value !== "undefined" ? e.target.value : undefined;
   }
   OpenAddMovementModel(): void {
     this.movement = new MovementEntity();

@@ -12,7 +12,6 @@ import { MemberService } from '../../services/member.service';
   styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements OnInit {
-  usrRol?: any;
   actionStr?: MemberActionEnum;
   lstMembers: MemberEntity[] = [];
   idToEdit?: number;
@@ -47,6 +46,7 @@ export class MembersComponent implements OnInit {
     this.MemberModel = new MemberEntity();
   }
   onEditMember(member: MemberEntity): void {
+    this.actionStr = MemberActionEnum.detail;
     this.idToEdit = member.memberId;
     this.MemberModel = JSON.parse(JSON.stringify(member));
   }
