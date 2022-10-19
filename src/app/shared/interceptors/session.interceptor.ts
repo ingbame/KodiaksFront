@@ -18,7 +18,7 @@ export class SessionInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let newRequest = request;
     let update: any = {};
-    if (this.authService.user.trim() != "" && this.authService.pass.trim() != "") {
+    if (this.authService.user.trim() != "" && this.authService.pass.trim() != "" && !this.authService.changePswd) {
       update = {
         setHeaders: {
           authorization: `Basic ${window.btoa(this.authService.user.trim() + ":" + this.authService.pass.trim())}`

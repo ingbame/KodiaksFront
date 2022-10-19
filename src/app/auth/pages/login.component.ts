@@ -128,7 +128,6 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(): void {
-    let responeToken: string = "";
     if ((this.logUsr?.userName?.trim() ?? "") == "")
       return;
     if ((this.logUsr?.password?.trim() ?? "") == "")
@@ -139,6 +138,10 @@ export class LoginComponent implements OnInit {
         {
           next: (res) => {
             localStorage.setItem('authUser', JSON.stringify(res.token));
+            if(this.logUsr.password === `Kodiaks${this.logUsr.userName?.substring(this.logUsr.userName.length - 4)}`){
+              this.router.navigateByUrl('/login/chage-pswrd');
+              return;
+            }
             if (!this.urlRedirect) {
               this.router.navigateByUrl('');
             } else {

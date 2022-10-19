@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRoutes } from './routes/auth.routing';
 import { NgParticlesModule } from 'ng-particles';
+import { ChangePaswordComponent } from './pages/change-pasword/change-pasword.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    ChangePaswordComponent
   ],
   imports: [
     CommonModule,
