@@ -35,6 +35,10 @@ $white: #FFFFFF !default;
   .navbar-toggler {
     border: none;
   }
+  .kodiaks-profile-dd{
+    position: absolute;
+    left:-67pt;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -71,7 +75,7 @@ $white: #FFFFFF !default;
           &:focus,
           &:active,
           &:active:focus {
-            color: $black !important;
+            color: $white !important;
           }
         }
       }
@@ -119,7 +123,7 @@ $white: #FFFFFF !default;
       display: none;
 
       li a {
-        color: $black;
+        color: $white;
       }
     }
 
@@ -240,6 +244,10 @@ $white: #FFFFFF !default;
     bottom: 6px;
   }
 
+  .kodiaks-profile-dd{
+    left: -25pt !important;
+  }
+
   @-webkit-keyframes fadeIn {
     0% {
       opacity: 0;
@@ -303,11 +311,19 @@ $white: #FFFFFF !default;
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
+
+  .kodiaks-profile-dd{
+    left:-67pt;
+  }
 }
 
 @media screen and (max-width: 576px) {
   .navbar[class*='navbar-toggleable-'] .container {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .kodiaks-profile-dd{
+    left: -25pt !important;
   }
 }

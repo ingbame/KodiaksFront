@@ -5,6 +5,9 @@ import { PositionsComponent } from './pages/positions/positions.component';
 import { RosterComponent } from './pages/roster/roster.component';
 import { RouterModule } from '@angular/router';
 import { StatsRoutes } from './routes/stats.routing';
+import { DetailModalComponent } from './components/roster/detail-modal/detail-modal.component';
+import { NewModalComponent } from './components/roster/new-modal/new-modal.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,11 +15,14 @@ import { StatsRoutes } from './routes/stats.routing';
   declarations: [
     StatsComponent,
     PositionsComponent,
-    RosterComponent
+    RosterComponent,
+    DetailModalComponent,
+    NewModalComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(StatsRoutes)
+    RouterModule.forChild(StatsRoutes),
+    SharedModule
   ]
 })
 export class StatsModule { }

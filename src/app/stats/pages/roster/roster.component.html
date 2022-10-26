@@ -1,1 +1,53 @@
-<p>roster works!</p>
+<!-- <app-new-modal [movement]="movement" [saveEvent]="updateDataEvent"></app-new-modal> -->
+<!-- <app-detail-modal [movement]="movementEdit"></app-detail-modal> -->
+
+<div class=" row">
+  <div class=" col-md-12">
+    <div class=" card">
+      <div class=" card-header">
+        <div class="row gy-2 gx-3 align-items-center w-100">
+          <div class="col-sm-10">
+            <h1>
+              Kodiaks Roster
+            </h1>
+          </div>
+          <div class="col-sm-2 text-right">
+            <button class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#movementModal"
+              type="button" (click)="OpenAddModel()" [appCanEdit]="[]">
+              <i class="fa-solid fa-plus-minus"></i> Agregar movimiento
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class=" card-body">
+        <div class=" table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th>Pitchers</th>
+                <th>B/T </th>
+                <th>DOB</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let item of roster">
+                <td class=" text-center">
+                  <a href="#" class="link-Kodiaks" data-bs-toggle="modal" data-bs-target="#detailModal"
+                    (click)="onOpenDetail(item)">
+                    {{item.fullName}} {{item.shirtNumber}}
+                  </a>
+                </td>
+                <td class=" text-center">
+                  {{item.btKeyValue}}
+                </td>
+                <td class=" text-center">
+                  {{item.birthday}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
