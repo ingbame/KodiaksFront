@@ -9,9 +9,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MemberModalComponent } from './components/members/member-modal.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { RolesModalComponent } from './components/roles/roles-modal.component';
 
 @NgModule({
-  declarations: [MembersComponent,RolesComponent, MenuComponent,  MemberModalComponent],
+  declarations: [MembersComponent,RolesComponent, MenuComponent,  MemberModalComponent, RolesModalComponent],
   imports: [
     CommonModule,
     NgbModule,
