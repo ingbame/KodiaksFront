@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-roles',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RolesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }

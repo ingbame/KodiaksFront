@@ -8,6 +8,7 @@ import { StatsRoutes } from './routes/stats.routing';
 import { DetailModalComponent } from './components/roster/detail-modal/detail-modal.component';
 import { NewModalComponent } from './components/roster/new-modal/new-modal.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule, NgForm } from '@angular/forms';
 
 
 
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     NewModalComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     RouterModule.forChild(StatsRoutes),
     SharedModule

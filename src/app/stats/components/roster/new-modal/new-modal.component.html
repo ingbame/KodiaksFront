@@ -1,1 +1,34 @@
-<p>new-modal works!</p>
+<!-- Modal -->
+<div class="modal fade modalKodiaks" id="addRosterModal" tabindex="-1" aria-labelledby="addRosterModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="roosterModalLabel">Nuevo movimiento</h1>
+        <button id="rosterModalClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmitRosterModal()" #form="ngForm" class="row g-3">
+          <div class="col-md-12">
+            <label for="ddlMemberFullName" class="form-label">Integrante</label>
+            <select #ddlMember name="ddlMemberFullName" class="form-select" [(ngModel)]="rosterItem.fullName"
+              (change)="onDdlMemberChange($event)" [appCanEdit]="[]">
+              <option selected [attr.data-id]="0">Seleccione</option>
+              <option *ngFor="let item of members" [attr.data-id]="item.memberId">{{item.fullName}}</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <label for="ddlPosition" class="form-label">Tipo</label>
+            <select #ddlPosition name="ddlPosition" class="form-select" [(ngModel)]="rosterItem.positionDesc"
+              (change)="onDdlPositionChange($event)" [appCanEdit]="[]">
+              <option selected [attr.data-id]="0">Seleccione</option>
+              <option *ngFor="let item of positions" [attr.data-id]="item.positionId">{{item.keyValue}} - {{item.positionDesc}}</option>
+            </select>
+          </div>
+          <div class="col-12 text-right" *appRole="['SuperAdmin','Admin']">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

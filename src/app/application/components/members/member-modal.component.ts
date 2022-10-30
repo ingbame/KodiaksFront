@@ -12,6 +12,7 @@ import { MemberService } from '../../services/member.service';
 import { RoleService } from '../../services/role.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { SessionService } from 'src/app/auth/services/session.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-member-modal',
@@ -32,6 +33,7 @@ export class MemberModalComponent implements OnInit {
   constructor(
     private helper: HelperService,
     private session: SessionService,
+    private spinner: NgxSpinnerService,
     private memberService: MemberService,
     private statsService: StatsService,
     private roleService: RoleService) { }
@@ -47,6 +49,7 @@ export class MemberModalComponent implements OnInit {
         // myModal?.modal('hide');
         model = this.CreateAddModel();
         if (this.ModelValid(model, true)) {
+          this.spinner.show();
           this.memberService.AddMember(model).subscribe({
             next: (res) => {
               this.session.token = res.token;
@@ -56,6 +59,7 @@ export class MemberModalComponent implements OnInit {
               this.helper.httpCatchError(err);
             },
             complete: () => {
+              this.spinner.hide();
               this.helper.showMessage(NotificationEnum.success, "Acción", "Guardado correctamente.");
               this.MemberModel = new MemberEntity();
               var myModal = document.getElementById('memberModalClose');
@@ -68,6 +72,7 @@ export class MemberModalComponent implements OnInit {
       case MemberActionEnum.edit:
         model = this.CreateEditModel();
         if (this.ModelValid(model)) {
+          this.spinner.show();
           this.memberService.UpdateMember(this.idToEdit, model).subscribe({
             next: (res) => {
               this.session.token = res.token;
@@ -77,6 +82,7 @@ export class MemberModalComponent implements OnInit {
               this.helper.httpCatchError(err);
             },
             complete: () => {
+              this.spinner.hide();
               this.helper.showMessage(NotificationEnum.success, "Acción", "Editado correctamente");
               this.MemberModel = new MemberEntity();
               var myModal = document.getElementById('memberModalClose');
@@ -104,6 +110,7 @@ export class MemberModalComponent implements OnInit {
   }
   //#region Private Methods
   private GetRoles(): void {
+    this.spinner.show();
     this.roleService.GetRole().subscribe({
       next: (res) => {
         if (!res.response.error)
@@ -112,10 +119,13 @@ export class MemberModalComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
     });
   }
   private GetBattingThrowingSides(): void {
+    this.spinner.show();
     this.statsService.GetBattingThrowingSides().subscribe({
       next: (res) => {
         if (!res.response.error)
@@ -124,7 +134,9 @@ export class MemberModalComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
     });
   }
   private CreateAddModel(): any {

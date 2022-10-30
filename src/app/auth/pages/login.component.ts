@@ -6,6 +6,7 @@ import { LoginEntity } from '../models/login';
 import { AuthService } from '../services/auth.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { SessionService } from '../services/session.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -98,6 +99,7 @@ export class LoginComponent implements OnInit {
     private helper: HelperService,
     private session: SessionService,
     private authService: AuthService,
+    private spinner: NgxSpinnerService,
     private router: Router,
     private activedRoute: ActivatedRoute) { }
 
@@ -133,12 +135,13 @@ export class LoginComponent implements OnInit {
     if ((this.logUsr?.password?.trim() ?? "") == "")
       return;
 
+    this.spinner.show();
     this.authService.login(this.logUsr.userName, this.logUsr.password)
       .subscribe(
         {
           next: (res) => {
             localStorage.setItem('authUser', JSON.stringify(res.token));
-            if(this.logUsr.password === `Kodiaks${this.logUsr.userName?.substring(this.logUsr.userName.length - 4)}`){
+            if (this.logUsr.password === `Kodiaks${this.logUsr.userName?.substring(this.logUsr.userName.length - 4)}`) {
               this.router.navigateByUrl('/login/chage-pswrd');
               return;
             }
@@ -152,7 +155,8 @@ export class LoginComponent implements OnInit {
             this.helper.httpCatchError(err);
           },
           complete: () => {
-           }
+            this.spinner.hide();
+          }
         });
   }
 }

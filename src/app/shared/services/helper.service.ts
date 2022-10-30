@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { NotificationEnum } from '../enums/notification-enum';
 
@@ -8,6 +9,7 @@ import { NotificationEnum } from '../enums/notification-enum';
 export class HelperService {
 
   constructor(
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService) { }
 
   showMessage(type: NotificationEnum, title: string, message: any) {
@@ -46,6 +48,7 @@ export class HelperService {
   }
 
   httpCatchError(err: any) {
+    this.spinner.hide();
     if (err.error != null)
       this.showMessage(NotificationEnum.error, "Error", err.error);
     else {

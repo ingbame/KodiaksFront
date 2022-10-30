@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MemberEntity } from 'src/app/application/models/member';
 import { MemberService } from 'src/app/application/services/member.service';
 import { SessionService } from 'src/app/auth/services/session.service';
@@ -30,6 +31,7 @@ export class NewModalComponent implements OnInit {
   constructor(
     private helper: HelperService,
     private session: SessionService,
+    private spinner: NgxSpinnerService,
     private movementsTypeService: MovementsTypeService,
     private conceptService: ConceptService,
     private methodService: MethodService,
@@ -47,6 +49,7 @@ export class NewModalComponent implements OnInit {
     // myModal?.modal('hide');
     model = this.NewMovementModel();
     if (this.ModelValid(model)) {
+      this.spinner.show();
       this.movementService.post(model).subscribe({
         next: (res) => {
           this.session.token = res.token;
@@ -56,6 +59,7 @@ export class NewModalComponent implements OnInit {
           this.helper.httpCatchError(err);
         },
         complete: () => {
+          this.spinner.hide();
           this.movement = new MovementEntity();
           let btnModalClose = document.getElementById("movementModalClose");
           btnModalClose?.click();
@@ -83,6 +87,7 @@ export class NewModalComponent implements OnInit {
     this.movement.movementDate = new Date(+year, +month - 1, +day);
   }
   private getMovementTypes(): void {
+    this.spinner.show();
     this.movementsTypeService.Get().subscribe({
       next: (res) => {
         this.movementTypes = res.response;
@@ -90,11 +95,14 @@ export class NewModalComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
     });
 
   }
   private getConcepts(): void {
+    this.spinner.show();
     this.conceptService.Get().subscribe({
       next: (res) => {
         this.concepts = res.response;
@@ -102,10 +110,13 @@ export class NewModalComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
     });
   }
   private getMethods(): void {
+    this.spinner.show();
     this.methodService.Get().subscribe({
       next: (res) => {
         this.methods = res.response;
@@ -113,10 +124,13 @@ export class NewModalComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
     });
   }
   private getMembers(): void {
+    this.spinner.show();
     this.memberService.GetMember().subscribe({
       next: (res) => {
         if (!res.error)
@@ -125,7 +139,9 @@ export class NewModalComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
     });
   }
   private NewMovementModel(): any {

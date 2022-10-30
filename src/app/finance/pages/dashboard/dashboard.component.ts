@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { SessionService } from 'src/app/auth/services/session.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { MovementEntity } from '../../models/movement';
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private helper: HelperService,
     private session: SessionService,
+    private spinner: NgxSpinnerService,
     private movementServices: MovementService
   ) { }
 
@@ -38,6 +40,7 @@ export class DashboardComponent implements OnInit {
       this.yearSelect.push(index);
     }
 
+    this.spinner.show();
     this.movementServices.GetTotal().subscribe({
       next: (res) => {
         this.total = res.response;
@@ -45,8 +48,9 @@ export class DashboardComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
-
+      complete: () => {
+        this.spinner.hide();
+      }
     });
 
     this.refreshModel();
@@ -60,6 +64,7 @@ export class DashboardComponent implements OnInit {
       }
     };
 
+    this.spinner.show();
     this.movementServices.GetYearMonth(this.year, this.month).subscribe({
       next: (res) => {
         this.session.token = res.token;
@@ -90,12 +95,14 @@ export class DashboardComponent implements OnInit {
       },
       complete: () => {
         this.infoGroup = preInfoGroup;
+        this.spinner.hide();
       }
     });
 
     this.getMovements();
   }
   getMovements(): void {
+    this.spinner.show();
     this.movementServices.Get(undefined, this.year, this.month).subscribe({
       next: (res) => {
         this.session.token = res.token;
@@ -104,7 +111,9 @@ export class DashboardComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
     });
   }
   onDdlYearChange(e: any): void {

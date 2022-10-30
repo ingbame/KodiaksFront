@@ -1,4 +1,5 @@
 import { Component, OnInit, ɵisListLikeIterable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { SessionService } from 'src/app/auth/services/session.service';
 import { MemberActionEnum } from 'src/app/shared/enums/member-action-enum';
 import { HelperService } from 'src/app/shared/services/helper.service';
@@ -20,9 +21,11 @@ export class MembersComponent implements OnInit {
   constructor(
     private helper: HelperService,
     private session: SessionService,
+    private spinner: NgxSpinnerService,
     private memberService: MemberService) { }
 
   updateDataEvent: any = () => {
+    this.spinner.show();
     this.memberService.GetMember().subscribe({
       next: (res) => {
         this.session.token = res.token;
@@ -32,7 +35,9 @@ export class MembersComponent implements OnInit {
       error: (err) => {
         this.helper.httpCatchError(err);
       },
-      complete: () => { }
+      complete: () => {
+        this.spinner.hide();
+      }
 
     });
   };

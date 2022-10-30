@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from "./shared/interceptors/token.interceptor";
 import { ToastrModule } from 'ngx-toastr';
 import { SessionInterceptor } from "./shared/interceptors/session.interceptor";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SessionInterceptor } from "./shared/interceptors/session.interceptor";
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot()
   ],
   providers: [

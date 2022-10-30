@@ -7,10 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class RosterService {
-
+  url: string = `${environment.kodiaksApi}/Statistics/Roster`;
   constructor(private httpCliente: HttpClient) { }
-  GetRoster(): Observable<any>{
-    let url = `${environment.kodiaksApi}/Statistics/Roster`;
-    return this.httpCliente.get<any>(url, {});
+  Get(): Observable<any>{
+    return this.httpCliente.get<any>(this.url, {});
+  }
+  Post(model: any): Observable<any> {
+    return this.httpCliente.post<any>(this.url, model);
+  }
+  Delete(model: any): Observable<any> {
+    return this.httpCliente.delete<any>(this.url, model);
   }
 }
