@@ -1,9 +1,9 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
   <div class="logo-containter">
     <button id="btSidenavToggle" class="logo" (click)="toggleCollapse()">
-      <img class="logo-img" src="../../../../assets/img/KS_NR.png">
+      <img class="logo-img" src="../../../../assets/img/Letras.png">
     </button>
-    <div class="logo-text" *ngIf="collapsed">Kodiaks</div>
+    <div class="logo-text" *ngIf="collapsed">Softbeer</div>
     <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
       <i class="fa-solid fa-xmark"></i>
     </button>
@@ -17,27 +17,3 @@
     </li>
   </ul>
 </div>
-<!-- <div class="logo">
-  <a class="simple-text logo-mini">
-    <div class="logo-img">
-      <img src="./assets/img/KS_NR.png" />
-    </div>
-  </a>
-  <a class="simple-text logo-normal">
-    <span>KODIAKS</span>
-  </a>
-</div>
-<div class="sidebar-wrapper">
-  <ul class="nav">
-    <li
-      routerLinkActive="active"
-      *ngFor="let menuItem of menuItems"
-      class="{{ menuItem.class }} nav-item"
-    >
-      <a [routerLink]="[menuItem.path]">
-        <i class="{{ menuItem.icon }}"></i>
-        <p>{{ menuItem.title }}</p>
-      </a>
-    </li>
-  </ul>
-</div> -->

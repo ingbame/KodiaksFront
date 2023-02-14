@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  kodiaksApi: "https://localhost:7226/api"
+  SoftApi: "https://localhost:7226/api"
 };
 
 /*

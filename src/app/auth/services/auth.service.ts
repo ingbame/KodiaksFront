@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private httpCliente: HttpClient) { }
   login(userName?: string, password?: string): Observable<any> {
     this.changePswd = false;
-    let url = `${environment.kodiaksApi}/Security/Session/LoginAuthentication`;
+    let url = `${environment.SoftApi}/Security/Session/LoginAuthentication`;
     this.user = userName ?? "";
     this.pass = password ?? "";
 
@@ -22,7 +22,7 @@ export class AuthService {
   }
   cangePassword(userName?: string, password?: string): Observable<any> {
     this.changePswd = true;
-    let url = `${environment.kodiaksApi}/Security/Session/ChangePassword`;
+    let url = `${environment.SoftApi}/Security/Session/ChangePassword`;
     this.user = userName ?? "";
     this.pass = password ?? "";
 

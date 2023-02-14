@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MovementsTypeService {
-  url: string = `${environment.kodiaksApi}/Finance/MovementType`;
+  url: string = `${environment.SoftApi}/Finance/MovementType`;
   constructor(private httpCliente: HttpClient) { }
   Get(id?: number): Observable<any> {
     return this.httpCliente.get<any>(id != null ? this.url + "?id=" + id : this.url, {});

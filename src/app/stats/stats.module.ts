@@ -9,6 +9,11 @@ import { DetailModalComponent } from './components/roster/detail-modal/detail-mo
 import { NewModalComponent } from './components/roster/new-modal/new-modal.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, NgForm } from '@angular/forms';
+import { TeamTableComponent } from './components/stats/team-table/team-table.component';
+import { RivalTeamPageComponent } from './components/stats/rival-team-page/rival-team-page.component';
+import { RivalTeamModalNewComponent } from './components/stats/rival-team-modal-new/rival-team-modal-new.component';
+import { GamePlayedStatsPageComponent } from './components/stats/game-played-stats-page/game-played-stats-page.component';
+import { TeamStatsPageComponent } from './components/stats/team-stats-page/team-stats-page.component';
 
 
 
@@ -18,7 +23,12 @@ import { FormsModule, NgForm } from '@angular/forms';
     PositionsComponent,
     RosterComponent,
     DetailModalComponent,
-    NewModalComponent
+    NewModalComponent,
+    TeamTableComponent,
+    RivalTeamPageComponent,
+    RivalTeamModalNewComponent,
+    GamePlayedStatsPageComponent,
+    TeamStatsPageComponent
   ],
   imports: [
     FormsModule,

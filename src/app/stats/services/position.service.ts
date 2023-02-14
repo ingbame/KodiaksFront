@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PositionService {
-  url: string = `${environment.kodiaksApi}/Statistics/Position`;
+  url: string = `${environment.SoftApi}/Statistics/Position`;
   constructor(private httpCliente: HttpClient) { }
   Get(id?: number): Observable<any> {
     return this.httpCliente.get<any>(id != null ? this.url + "?id=" + id : this.url, {});

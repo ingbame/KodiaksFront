@@ -1,0 +1,43 @@
+<app-rival-team-modal-new [RivalModel]="RivalModel"></app-rival-team-modal-new>
+<div class=" card-header">
+  <div class="row gy-2 gx-3 align-items-center w-100">
+    <div class="col-sm-10">
+      <h1>
+        Equipos Rivales
+      </h1>
+    </div>
+    <div class="col-sm-2 text-right">
+      <button class="btn btn-success w-100 h-100" data-bs-toggle="modal" data-bs-target="#rivalModal" type="button"
+        (click)="OpenAddRivalModel()" [appCanEdit]="[]">
+        <i class="fa-solid fa-user-plus"></i> Agregar
+      </button>
+    </div>
+  </div>
+</div>
+<div class=" card-body">
+  <div class=" table-responsive">
+    <table class="table" id="">
+      <thead>
+        <tr>
+          <th>Id </th>
+          <th>Rival</th>
+          <th>Activo</th>
+          <th class=" text-center"></th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let rival of lstRivals">
+          <td>{{rival.rivalTeamId}}</td>
+          <td>{{rival.teamName}}</td>
+          <td>{{rival.isActive}}</td>
+          <td class=" text-center">
+            <button class="btn btn-info w-100 h-100" data-bs-toggle="modal" data-bs-target="#rivalModal" type="button"
+              (click)="onEditRival(rival)">
+              <i class="fa-solid fa-user-pen"></i> Detalle
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

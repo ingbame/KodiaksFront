@@ -1,0 +1,86 @@
+<div class="table-responsive">
+  <table class="CustomTableSoft">
+    <thead>
+      <tr class="text-center bg-secondary">
+        <th style="width: 2%;">No</th>
+        <th style="width: 3%;">Ord</th>
+        <th style="width: 20%;">Nombre </th>
+        <th style="width: 5%;">POS</th>
+        <th style="width: 80px;" *ngFor="let item of innings">{{item}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of players">
+        <tr>
+          <td class="OrderMainColumn text-left">
+            <table class="OrderStatsTable">
+              <ng-container *ngFor="let item of getShirtNumberByPositionAtBat(item)">
+                <tr>
+                  <td [className]="item.class">{{item.value}}</td>
+                </tr>
+              </ng-container>
+            </table>
+          </td>
+          <td class="OrderMainColumn text-left">
+            <table class="OrderStatsTable">
+              <tr>
+                <td class="OrderRowFirst">{{item}}</td>
+              </tr>
+              <tr>
+                <td class="OrderRowContinue">{{item}}</td>
+              </tr>
+              <tr>
+                <td class="OrderRowContinue">{{item}}</td>
+              </tr>
+            </table>
+          </td>
+          <td class="OrderNameMainColumn text-center">
+            <table class="OrderNameStatsTable">
+              <tr>
+                <td class="OrderNameRowFirst">Nombre 1</td>
+              </tr>
+              <tr>
+                <td class="OrderNameRowContinue">Nombre 2</td>
+              </tr>
+              <tr>
+                <td class="OrderNameRowContinue">Nombre 3</td>
+              </tr>
+            </table>
+          </td>
+          <td class="OrderMainColumn">
+            <table class="OrderStatsTable">
+              <tr>
+                <td class="OrderRowFirst">Is pit</td>
+              </tr>
+              <tr>
+                <td class="OrderRowContinue">Is pit</td>
+              </tr>
+              <tr>
+                <td class="OrderRowContinue">Is pit</td>
+              </tr>
+            </table>
+          </td>
+          <td class="InningMainColumn text-center" *ngFor="let item of innings">
+            <table class="InningStatsTable" style="background: url('/assets/img/game-stats/Square3B.png');">
+              <tr>
+                <td style="text-align: left !important;">1</td>
+                <td></td>
+                <td style="text-align: right !important;">3</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>K</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td style="text-align: left !important;">7</td>
+                <td></td>
+                <td style="text-align: right !important;">9</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

@@ -153,7 +153,7 @@ export class MemberModalComponent implements OnInit {
       },
       user: {
         userName: this.MemberModel.cellPhoneNumber?.trim() ?? null,
-        password: "Kodiaks" + this.MemberModel.cellPhoneNumber?.trim()?.substring(this.MemberModel.cellPhoneNumber.length - 4) ?? null
+        password: "Softbeer" + this.MemberModel.cellPhoneNumber?.trim()?.substring(this.MemberModel.cellPhoneNumber.length - 4) ?? null
       }
     };
     return result;

@@ -1,5 +1,5 @@
 .sidenav {
-  background: #760f0f;
+  background: #FEC52E;
   transition: all .5s ease;
   position: fixed;
   z-index: 1;
@@ -38,7 +38,7 @@
       margin-left: 1.5rem;
       font-size: 24px;
       font-weight: 700;
-      color: #FFF;
+      color: #132849;
     }
 
     .btn-close {
@@ -51,7 +51,7 @@
       border: none;
 
       .fa-xmark {
-        color: #FFF;
+        color: #132849;
         font-size: 24px;
       }
     }
@@ -80,7 +80,7 @@
       display: flex;
       align-items: center;
       height: 3rem;
-      color: #F3F3F3;
+      color: #132849;
       text-decoration: none;
       border-radius: 0.625rem;
       transition: all .3s ease;

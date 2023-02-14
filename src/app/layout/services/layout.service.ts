@@ -10,7 +10,7 @@ export class LayoutService {
 
   constructor(private httpCliente: HttpClient) { }
   GetMenu(): Observable<any> {
-    let url = `${environment.kodiaksApi}/Application/Menu`;
+    let url = `${environment.SoftApi}/Application/Menu`;
     return this.httpCliente.get<any>(url, {});
   }
 }

@@ -1,7 +1,7 @@
 $black: #000000 !default;
 $white: #FFFFFF !default;
 
-$color-bg-dark-mode: #1E1E2F !default;
+$color-bg-dark-mode: #132849 !default;
 $color-bg-light-mode: #F3F4F8 !default;
 $color-bg-pop-up-dark-mode: #1D2439 !default;
 $color-bg-white-content: #F3F4F8 !default;
@@ -93,4 +93,10 @@ body{
   color: #fff;
   z-index: 0;
 }
-
+.pageNavBar{
+  background: #FEC52E !important;
+  color: #132849 !important;
+  a:active{
+    background: #FFF !important;
+  }
+}

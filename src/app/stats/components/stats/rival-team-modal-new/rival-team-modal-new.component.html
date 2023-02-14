@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade modalKodiaks" id="rivalModal" tabindex="-1" aria-labelledby="rivalModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="rivalModalLabel">Rival</h1>
+        <button id="rivalModalClose" type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmitRivalModal()" #form="ngForm" class="row g-3">
+          <div class="col-md-3">
+            <label for="txtMemberId" class="form-label">ID</label>
+            <input type="text" class="form-control w-100" name="txtMemberId" disabled [(ngModel)]="RivalModel.rivalTeamId">
+          </div>
+          <div class="col-md-6">
+            <label for="txtFullName" class="form-label">Nombre Equipo</label>
+            <input type="text" class="form-control w-100" name="txtFullName" [(ngModel)]="RivalModel.teamName" [appCanEdit]="[]">
+          </div>
+          <div class="col-md-3">
+            <br>
+            <div class="custom-checkbox-form">
+              <input type="checkbox" value="" name="cbxActive" [(ngModel)]="RivalModel.isActive" [appCanEdit]="['SuperAdmin']">
+              <label class="custom-checkbox-label" for="cbxActive">
+                Activo
+              </label>
+            </div>
+          </div>
+          <div class="col-md-12 text-end" *appRole="['SuperAdmin','Admin']">
+            <button type="button" class="btn  w-50 p-3 btn-danger" (click)="onClickCancel()">Cancelar</button>
+            <button type="submit" class="btn  p-3 w-50 btn-success">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

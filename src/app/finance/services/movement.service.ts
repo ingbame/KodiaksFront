@@ -8,7 +8,7 @@ import { stringToAlpha } from 'tsparticles-engine';
   providedIn: 'root'
 })
 export class MovementService {
-  url: string = `${environment.kodiaksApi}/Finance/Movement`;
+  url: string = `${environment.SoftApi}/Finance/Movement`;
   constructor(private httpCliente: HttpClient) { }
   Get(id?: number, year?: number, month?: number): Observable<any> {
     let params: string = "";

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class RoleService {
-  urlRole: string = `${environment.kodiaksApi}/Application/Role`;
+  urlRole: string = `${environment.SoftApi}/Application/Role`;
 
   constructor(private httpCliente: HttpClient) { }
 

@@ -1,1 +1,30 @@
-<p>stats works!</p>
+<div class=" row">
+  <div class=" col-md-12">
+    <div class=" card">
+      <div class=" card-header pageNavBar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" [routerLink]="['teamStats']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Estadisticas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['gamePlayedStats']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Juegos Jugados</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['rivalTeam']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Equipos Rivales</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

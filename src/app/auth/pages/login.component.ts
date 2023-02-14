@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     },
     background: {
       color: {
-        value: "#1E1E1E"
+        value: "#132849"
       }
     },
     fpsLimit: 120,
@@ -50,10 +50,10 @@ export class LoginComponent implements OnInit {
     },
     particles: {
       color: {
-        value: "#760F0F"
+        value: "#FFFFFF"
       },
       links: {
-        color: "#ffffff",
+        color: "#FEC52E",
         distance: 150,
         enable: true,
         opacity: 0.5,

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MemberService {
-  urlMember: string = `${environment.kodiaksApi}/Application/Member`;
+  urlMember: string = `${environment.SoftApi}/Application/Member`;
   constructor(private httpCliente: HttpClient) { }
   GetMember(id?: number): Observable<any> {
     return this.httpCliente.get<any>(id != null ? this.urlMember + "?id=" + id : this.urlMember, {});

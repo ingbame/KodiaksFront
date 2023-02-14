@@ -10,7 +10,7 @@ export class StatsService {
 
   constructor(private httpCliente: HttpClient) { }
   GetBattingThrowingSides(id?:number): Observable<any>{
-    let url = `${environment.kodiaksApi}/Statistics/BattingThrowingSides`;
+    let url = `${environment.SoftApi}/Statistics/BattingThrowingSides`;
     if(id != null){
       url += "?id=" + id;
     }
